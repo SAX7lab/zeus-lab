@@ -1,0 +1,1097 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZEUS lab – Moderne Websites für Unternehmen</title>
+<meta name="description" content="ZEUS lab gestaltet und entwickelt moderne, schnelle Websites für Unternehmen – Design, Entwicklung, SEO und Betreuung aus einer Hand.">
+<meta name="theme-color" content="#090d0b">
+<meta property="og:title" content="ZEUS lab – Moderne Websites für Unternehmen">
+<meta property="og:description" content="Design, Entwicklung und Performance aus einer Hand.">
+<meta property="og:image" content="assets/zeus-icon-512.png">
+<link rel="icon" href="assets/zeus-icon-512.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme:dark;
+    --bg:#090d0b;
+    --bg-2:#0e1411;
+    --card:rgba(255,255,255,.028);
+    --card-2:rgba(255,255,255,.05);
+    --border:rgba(255,255,255,.08);
+    --border-2:rgba(255,255,255,.14);
+    --text:#f2efe6;
+    --muted:#a3a699;
+    --faint:#6c7066;
+    --olive:#b4c47c;
+    --olive-dim:rgba(180,196,124,.12);
+    --beige:#e7d7b4;
+    --grad:linear-gradient(100deg,#efe2c4 0%,#c9cf98 45%,#a3b56a 100%);
+    --r:20px;
+    --wrap:1180px;
+    --ease:cubic-bezier(.22,.8,.24,1);
+    --sans:Geist,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"Geist Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:96px;background:var(--bg)}
+  body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img,svg{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit}
+  h1,h2,h3,h4{margin:0;font-weight:600;letter-spacing:-.035em;line-height:1.05}
+  p{margin:0 0 1em}
+  ::selection{background:var(--olive);color:var(--bg)}
+  :focus-visible{outline:2px solid var(--olive);outline-offset:3px;border-radius:8px}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+  .i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+  .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* Feines Rauschen über der ganzen Seite */
+  body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+  section{position:relative;padding:clamp(96px,12vw,160px) 0 0}
+  .tag{display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 8px;border-radius:999px;border:1px solid var(--border);background:var(--card);font:500 13px/1 var(--sans);color:var(--muted)}
+  .tag .dot{width:18px;height:18px;border-radius:50%;display:grid;place-items:center;background:var(--olive-dim);color:var(--olive)}
+  .tag .dot .i{width:11px;height:11px;stroke-width:2.2}
+  .head{max-width:720px;margin-bottom:56px}
+  .head.center{margin-inline:auto;text-align:center}
+  .h2{font-size:clamp(34px,4.6vw,56px);margin:18px 0 16px}
+  .sub{font-size:clamp(16px,1.4vw,18.5px);color:var(--muted);margin:0;line-height:1.6}
+
+  /* Buttons */
+  .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 22px;border-radius:999px;font:500 15px/1 var(--sans);border:1px solid transparent;cursor:pointer;transition:transform .2s var(--ease),background .2s,border-color .2s,box-shadow .2s;white-space:nowrap}
+  .btn .i{width:17px;height:17px;transition:transform .2s var(--ease)}
+  .btn:hover .i{transform:translateX(2px)}
+  .btn-primary{background:var(--text);color:#0b100d;box-shadow:0 0 0 1px rgba(255,255,255,.1),0 8px 30px -8px rgba(231,215,180,.45)}
+  .btn-primary:hover{background:#fff;transform:translateY(-1px)}
+  .btn-ghost{background:var(--card);border-color:var(--border-2);color:var(--text);backdrop-filter:blur(10px)}
+  .btn-ghost:hover{background:var(--card-2);border-color:rgba(255,255,255,.24)}
+  .btn-sm{height:40px;padding:0 16px;font-size:14px}
+
+  /* Logo: Σ-Zeichen + Wortmarke */
+  .logo{display:inline-flex;align-items:center;gap:10px}
+  .mark{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;flex:none;background:linear-gradient(145deg,#1d2a20,#0f1612);box-shadow:inset 0 0 0 1px rgba(231,215,180,.25),0 6px 20px -6px rgba(180,196,124,.4)}
+  .mark svg{width:16px;height:16px}
+  .wordmark{font:600 16px/1 var(--sans);letter-spacing:.16em;white-space:nowrap}
+  .wordmark small{font:500 12px/1 var(--mono);letter-spacing:.02em;color:var(--olive);margin-left:6px}
+
+  /* Navigation – schwebende Glasleiste */
+  .nav-shell{position:fixed;top:14px;left:0;right:0;z-index:60;display:flex;justify-content:center;padding:0 16px;pointer-events:none}
+  .nav{pointer-events:auto;display:flex;align-items:center;gap:6px;width:100%;max-width:var(--wrap);height:60px;padding:0 8px 0 16px;border-radius:999px;border:1px solid transparent;transition:background .3s,border-color .3s,max-width .4s var(--ease),box-shadow .3s}
+  .nav.solid{background:rgba(14,20,17,.72);border-color:var(--border);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);max-width:900px;box-shadow:0 20px 50px -20px rgba(0,0,0,.6)}
+  .nav .logo{margin-right:auto}
+  .links{display:flex;align-items:center;gap:2px}
+  .links a{padding:9px 14px;border-radius:999px;font-size:14.5px;color:var(--muted);transition:color .2s,background .2s}
+  .links a:hover{color:var(--text);background:var(--card-2)}
+  .links a.active{color:var(--text)}
+  .links .m-cta{display:none}
+  .nav>.btn{margin-left:8px}
+  .burger{display:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--border-2);background:var(--card);cursor:pointer;place-items:center}
+  .burger .i{width:18px;height:18px}
+
+  /* Hero */
+  .hero{padding:150px 0 0;text-align:center;overflow:hidden}
+  .aurora{position:absolute;inset:-10% -10% auto;height:900px;z-index:-1;pointer-events:none;filter:blur(60px)}
+  .aurora span{position:absolute;border-radius:50%;animation:drift 18s ease-in-out infinite alternate}
+  .aurora span:nth-child(1){width:620px;height:420px;left:12%;top:4%;background:radial-gradient(closest-side,rgba(164,181,106,.32),transparent)}
+  .aurora span:nth-child(2){width:540px;height:400px;right:10%;top:0;background:radial-gradient(closest-side,rgba(231,215,180,.2),transparent);animation-delay:-6s}
+  .aurora span:nth-child(3){width:700px;height:360px;left:30%;top:30%;background:radial-gradient(closest-side,rgba(110,140,90,.22),transparent);animation-delay:-12s}
+  @keyframes drift{to{transform:translate(60px,40px) scale(1.12)}}
+  .grid-bg{position:absolute;inset:0 0 auto;height:820px;z-index:-1;pointer-events:none;
+    background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:72px 72px;background-position:center top;
+    mask-image:radial-gradient(ellipse 60% 70% at 50% 0%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 60% 70% at 50% 0%,#000 30%,transparent 80%)}
+  .hero h1{font-size:clamp(44px,7.4vw,96px);letter-spacing:-.05em;line-height:.98;max-width:12ch;margin:26px auto 24px}
+  .hero .sub{max-width:580px;margin:0 auto 36px;font-size:clamp(17px,1.6vw,20px)}
+  .ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .trust{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 26px;margin-top:30px;font-size:14px;color:var(--faint)}
+  .trust span{display:inline-flex;align-items:center;gap:7px}
+  .trust .i{width:15px;height:15px;color:var(--olive);stroke-width:2.2}
+
+  /* Hero-Vorschau */
+  .preview-wrap{position:relative;margin:72px auto 0;max-width:1060px;perspective:1600px}
+  .preview{position:relative;border-radius:18px;padding:1px;background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.03) 60%);transform:rotateX(14deg) scale(.96);transform-origin:50% 0;box-shadow:0 60px 140px -40px rgba(0,0,0,.9),0 0 120px -40px rgba(180,196,124,.35)}
+  .preview-inner{border-radius:17px;overflow:hidden;background:#0c120f}
+  .pbar{display:flex;align-items:center;gap:7px;height:42px;padding:0 14px;border-bottom:1px solid var(--border);background:rgba(255,255,255,.02)}
+  .pbar i{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.12)}
+  .purl{margin:0 auto;display:flex;align-items:center;gap:7px;height:26px;padding:0 14px;border-radius:8px;background:rgba(255,255,255,.04);font:400 12px/1 var(--mono);color:var(--faint)}
+  .purl .i{width:12px;height:12px;color:var(--olive)}
+  .site{position:relative;padding:22px 28px 30px;text-align:left;min-height:420px;overflow:hidden}
+  .site::before{content:"";position:absolute;right:-80px;top:-60px;width:460px;height:460px;border-radius:50%;background:radial-gradient(closest-side,rgba(180,196,124,.22),transparent)}
+  .s-nav{display:flex;align-items:center;gap:22px;font-size:12px;color:var(--faint);position:relative}
+  .s-nav b{font:600 13px/1 var(--sans);letter-spacing:.14em;color:var(--text);margin-right:auto}
+  .s-nav em{font-style:normal;padding:7px 12px;border-radius:999px;background:var(--text);color:#0b100d;font-weight:500}
+  .s-hero{display:grid;grid-template-columns:1.15fr 1fr;gap:28px;margin-top:44px;position:relative}
+  .s-hero h4{font-size:clamp(22px,3vw,38px);letter-spacing:-.045em;line-height:1.02}
+  .s-hero p{font-size:13px;color:var(--muted);margin:14px 0 18px;max-width:34ch}
+  .s-btns{display:flex;gap:8px}
+  .s-btns span{font-size:12px;padding:8px 13px;border-radius:999px;background:var(--olive);color:#0b100d;font-weight:500}
+  .s-btns span+span{background:rgba(255,255,255,.06);color:var(--text);border:1px solid var(--border)}
+  .s-img{border-radius:14px;border:1px solid var(--border);min-height:190px;background:
+    radial-gradient(120% 90% at 80% 10%,rgba(231,215,180,.45),transparent 50%),
+    radial-gradient(90% 80% at 10% 100%,rgba(143,160,90,.6),transparent 55%),
+    linear-gradient(160deg,#27331f,#121a14)}
+  .s-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px;position:relative}
+  .s-cards div{border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,.025);padding:14px;font-size:12px;color:var(--muted)}
+  .s-cards b{display:block;color:var(--text);font-weight:500;font-size:13px;margin-bottom:4px}
+  .float{position:absolute;z-index:4;border-radius:16px;padding:14px 16px;text-align:left;background:rgba(20,28,23,.74);border:1px solid var(--border-2);backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%);box-shadow:0 24px 60px -20px rgba(0,0,0,.8);animation:bob 6s ease-in-out infinite}
+  @keyframes bob{50%{transform:translateY(-8px)}}
+  .f-scores{left:-48px;bottom:60px;display:flex;gap:10px;animation-delay:-2s}
+  .ring{width:58px;text-align:center}
+  .ring svg{width:52px;height:52px;margin:0 auto}
+  .ring .trk{fill:none;stroke:rgba(255,255,255,.08);stroke-width:5}
+  .ring .val{fill:none;stroke:var(--olive);stroke-width:5;stroke-linecap:round;stroke-dasharray:150.8;stroke-dashoffset:150.8}
+  .ring text{font:600 17px var(--sans);fill:var(--text);letter-spacing:-.03em}
+  .ring small{display:block;margin-top:6px;font-size:11px;color:var(--muted);line-height:1.2}
+  .f-lead{right:-40px;top:96px;display:flex;align-items:center;gap:12px;min-width:250px}
+  .f-lead .ava{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;flex:none;background:var(--olive-dim);color:var(--olive)}
+  .f-lead b{display:block;font-size:14px;font-weight:500}
+  .f-lead span{font-size:12.5px;color:var(--muted)}
+  .f-lead .new{margin-left:auto;font:500 11px/1 var(--mono);padding:5px 8px;border-radius:999px;background:var(--olive);color:#0b100d}
+  .f-speed{right:-20px;bottom:44px;min-width:200px;animation-delay:-4s}
+  .f-speed small{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+  .f-speed small .i{width:14px;height:14px;color:var(--olive)}
+  .f-speed b{display:block;font-size:28px;font-weight:600;letter-spacing:-.04em;margin:4px 0 6px}
+  .f-speed b span{font-size:15px;color:var(--muted);font-weight:500;margin-left:2px}
+  .spark{width:100%;height:30px}
+  .preview-fade{position:absolute;left:-10%;right:-10%;bottom:-2px;height:40%;background:linear-gradient(transparent,var(--bg));pointer-events:none;z-index:3}
+
+  /* Kennzahlen */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);border-radius:var(--r);background:var(--card);margin-top:40px;text-align:left}
+  .stat{padding:28px 26px;border-right:1px solid var(--border)}
+  .stat:last-child{border-right:0}
+  .stat b{display:block;font-size:clamp(30px,3.4vw,40px);font-weight:600;letter-spacing:-.045em;line-height:1}
+  .stat span{display:block;margin-top:10px;font-size:14.5px;color:var(--muted)}
+
+  /* Bento */
+  .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+  .tile{position:relative;border-radius:var(--r);border:1px solid var(--border);background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.012));padding:26px;overflow:hidden;display:flex;flex-direction:column;min-height:300px;isolation:isolate;transition:border-color .3s}
+  .tile::after{content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .3s;background:radial-gradient(380px circle at var(--x,50%) var(--y,0%),rgba(180,196,124,.1),transparent 60%)}
+  .tile:hover{border-color:var(--border-2)}
+  .tile:hover::after{opacity:1}
+  .t-ico{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;flex:none;background:var(--card-2);border:1px solid var(--border);color:var(--olive)}
+  .tile h3{font-size:21px;letter-spacing:-.025em;margin:18px 0 8px}
+  .tile p{color:var(--muted);font-size:15px;margin:0;max-width:44ch}
+  .viz{margin-top:auto;padding-top:24px}
+  .span-4{grid-column:span 4}.span-3{grid-column:span 3}.span-2{grid-column:span 2}
+  .v-design{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:stretch}
+  .type-spec{border:1px solid var(--border);border-radius:14px;padding:14px 18px;background:rgba(0,0,0,.2);display:flex;flex-direction:column;justify-content:space-between;gap:10px}
+  .type-spec b{font-size:52px;font-weight:600;letter-spacing:-.05em;line-height:.9}
+  .type-spec span{font:400 11px/1 var(--mono);color:var(--faint)}
+  .swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  .sw{border-radius:12px;min-height:84px;border:1px solid var(--border);position:relative}
+  .sw span{position:absolute;left:8px;bottom:8px;font:400 10px/1 var(--mono);color:rgba(0,0,0,.55)}
+  .sw.dark span{color:rgba(255,255,255,.55)}
+  .chips-row{grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap}
+  .chips-row span{font-size:12.5px;padding:7px 12px;border-radius:999px;border:1px solid var(--border);color:var(--muted);background:rgba(255,255,255,.02)}
+  .chips-row span.on{background:var(--olive);color:#0b100d;border-color:transparent}
+  .v-phone{display:flex;justify-content:center}
+  .phone{width:128px;height:200px;border-radius:24px;border:1px solid var(--border-2);background:#0c120f;padding:22px 12px 12px;position:relative;box-shadow:0 20px 40px -20px rgba(0,0,0,.8)}
+  .phone::before{content:"";position:absolute;top:9px;left:50%;width:36px;height:5px;border-radius:5px;background:rgba(255,255,255,.12);transform:translateX(-50%)}
+  .phone .ph-img{height:62px;border-radius:10px;background:radial-gradient(90% 90% at 80% 10%,rgba(231,215,180,.5),transparent 60%),linear-gradient(160deg,#3a4a2b,#141c16)}
+  .phone .ln{height:6px;border-radius:4px;background:rgba(255,255,255,.14);margin-top:10px}
+  .phone .ln.s{width:60%}
+  .phone .pbtn{margin-top:14px;height:20px;border-radius:999px;background:var(--olive);width:70%}
+  .v-gauge{display:flex;align-items:center;gap:18px}
+  .gauge{width:124px;flex:none}
+  .gauge .g-trk{fill:none;stroke:rgba(255,255,255,.08);stroke-width:10;stroke-linecap:round}
+  .gauge .g-val{fill:none;stroke:url(#gGrad);stroke-width:10;stroke-linecap:round;stroke-dasharray:157.08;stroke-dashoffset:157.08}
+  .gauge .gv{font:600 21px var(--sans);fill:var(--text);letter-spacing:-.04em}
+  .gauge .gl{font:400 8.5px var(--mono);fill:var(--faint);letter-spacing:.06em}
+  .v-gauge ul{list-style:none;margin:0;padding:0;font-size:13px;color:var(--muted);display:grid;gap:7px;flex:1}
+  .v-gauge li{display:flex;justify-content:space-between;gap:10px}
+  .v-gauge li b{color:var(--olive);font-weight:500;font-family:var(--mono);font-size:12px}
+  .serp{border:1px solid var(--border);border-radius:14px;padding:14px 16px;background:rgba(0,0,0,.2)}
+  .serp .q{display:flex;align-items:center;gap:8px;height:34px;padding:0 12px;border-radius:999px;background:rgba(255,255,255,.05);font-size:13px;color:var(--muted);margin-bottom:14px}
+  .serp .q .i{width:14px;height:14px}
+  .serp .top{display:flex;justify-content:space-between;align-items:center}
+  .serp .u{font-size:11.5px;color:var(--faint);display:flex;align-items:center;gap:6px}
+  .serp .u i{width:16px;height:16px;border-radius:50%;background:var(--olive-dim)}
+  .serp .rank{font:500 11px/1 var(--mono);padding:4px 7px;border-radius:6px;background:var(--olive-dim);color:var(--olive)}
+  .serp b{display:block;font-weight:500;color:#c9d6a0;font-size:15px;margin:6px 0 2px}
+  .serp span.d{font-size:12px;color:var(--muted)}
+  .code{border:1px solid var(--border);border-radius:14px;background:rgba(0,0,0,.28);padding:14px 16px;font:400 12.5px/1.75 var(--mono);color:var(--muted);overflow:hidden;white-space:pre}
+  .code .k{color:#c7a8e0}.code .s{color:#c9d6a0}.code .f{color:var(--beige)}.code .c{color:var(--faint)}
+  .v-compare{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px}
+  .mini{border-radius:12px;border:1px solid var(--border);padding:10px;height:120px;background:rgba(0,0,0,.2)}
+  .mini.old{background:#d9d6cf;border-color:transparent}
+  .mini.old .bar1{height:16px;background:#3b5a8a;border-radius:2px}
+  .mini.old .txt{height:5px;background:#9a978f;margin-top:7px;border-radius:2px}
+  .mini.old .txt.s{width:70%}
+  .mini.old .tbl{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:9px}
+  .mini.old .tbl i{height:22px;background:#bdb9b0}
+  .mini.new .bar2{display:flex;justify-content:space-between;align-items:center}
+  .mini.new .bar2 i{width:26px;height:6px;border-radius:3px;background:var(--text)}
+  .mini.new .bar2 em{width:30px;height:12px;border-radius:999px;background:var(--olive)}
+  .mini.new .h{height:9px;width:80%;border-radius:4px;background:var(--grad);margin-top:14px}
+  .mini.new .h.s{width:55%;margin-top:6px;opacity:.6}
+  .mini.new .g{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;margin-top:14px}
+  .mini.new .g i{height:30px;border-radius:7px;background:rgba(255,255,255,.06);border:1px solid var(--border)}
+  .arrow-c{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--border-2);background:var(--card-2);color:var(--olive)}
+  .arrow-c .i{width:17px;height:17px}
+  .v-compare small{display:block;text-align:center;font-size:11.5px;color:var(--faint);margin-top:8px}
+  .uptime{display:flex;gap:3px;height:44px;align-items:flex-end}
+  .uptime i{flex:1;border-radius:3px;background:var(--olive);opacity:.85;height:100%;transform-origin:bottom;animation:grow .8s var(--ease) both}
+  @keyframes grow{from{transform:scaleY(.2);opacity:0}}
+  .up-meta{display:flex;justify-content:space-between;margin-top:10px;font:400 11.5px/1 var(--mono);color:var(--faint)}
+  .up-meta b{color:var(--olive);font-weight:500;display:inline-flex;align-items:center;gap:7px}
+  .up-meta b::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--olive);box-shadow:0 0 0 3px var(--olive-dim)}
+  .care-list{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px;font-size:13.5px;color:var(--muted)}
+  .care-list span{display:flex;align-items:center;gap:8px}
+  .care-list .i{width:15px;height:15px;color:var(--olive);stroke-width:2}
+
+  /* Simulator */
+  .sim{display:grid;grid-template-columns:1fr 1.15fr;gap:48px;align-items:center}
+  .panel{border-radius:24px;border:1px solid var(--border);background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015));padding:clamp(24px,3.4vw,36px);box-shadow:0 40px 100px -50px rgba(0,0,0,.9)}
+  .panel-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;font-size:13.5px;color:var(--muted)}
+  .live{display:inline-flex;align-items:center;gap:7px;font:500 12px/1 var(--mono);color:var(--olive)}
+  .live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--olive);box-shadow:0 0 0 3px var(--olive-dim)}
+  .lt-val{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:16px}
+  .lt-val label{font-size:15px;color:var(--muted)}
+  .lt-val output{font-size:44px;font-weight:600;letter-spacing:-.05em;line-height:1}
+  .lt-val output span{font-size:20px;color:var(--muted);margin-left:2px}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:999px;outline:none;margin:0;background:linear-gradient(90deg,var(--olive) var(--p,11%),rgba(255,255,255,.08) var(--p,11%))}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:var(--text);border:0;box-shadow:0 0 0 6px rgba(180,196,124,.22),0 4px 12px rgba(0,0,0,.5);cursor:grab}
+  input[type=range]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;background:var(--text);border:0;box-shadow:0 0 0 6px rgba(180,196,124,.22);cursor:grab}
+  .ticks{display:flex;justify-content:space-between;margin-top:12px;font:400 11.5px/1 var(--mono);color:var(--faint)}
+  .kpis{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:26px}
+  .kpi{border-radius:16px;border:1px solid var(--border);background:rgba(0,0,0,.2);padding:18px}
+  .kpi small{display:block;font-size:13px;color:var(--muted);margin-bottom:10px;line-height:1.35}
+  .kpi b{font-size:clamp(30px,3.6vw,40px);font-weight:600;letter-spacing:-.05em;line-height:1;transition:color .3s}
+  .kpi b.good{color:var(--olive)}.kpi b.warn{color:#e3b47c}.kpi b.bad{color:#e48f84}
+  .meter{height:6px;border-radius:999px;background:rgba(255,255,255,.07);margin-top:14px;overflow:hidden}
+  .meter i{display:block;height:100%;width:0;border-radius:inherit;background:var(--olive);transition:width .45s var(--ease),background .3s}
+  .verdict{display:flex;gap:10px;align-items:flex-start;margin-top:16px;padding:14px 16px;border-radius:14px;font-size:14.5px;border:1px solid rgba(180,196,124,.28);background:var(--olive-dim);transition:background .3s,border-color .3s}
+  .verdict .i{width:18px;height:18px;margin-top:2px;color:var(--olive)}
+  .verdict.warn{background:rgba(227,180,124,.08);border-color:rgba(227,180,124,.28)}.verdict.warn .i{color:#e3b47c}
+  .verdict.bad{background:rgba(228,143,132,.08);border-color:rgba(228,143,132,.28)}.verdict.bad .i{color:#e48f84}
+  .src{margin:14px 0 0;font-size:12px;color:var(--faint);line-height:1.5}
+
+  /* Ablauf */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;position:relative}
+  .steps::before{content:"";position:absolute;left:44px;right:44px;top:44px;height:1px;background:var(--border-2)}
+  .steps .line{position:absolute;left:44px;top:44px;height:1px;width:0;background:linear-gradient(90deg,var(--olive),var(--beige));box-shadow:0 0 12px var(--olive)}
+  .step{position:relative;border-radius:var(--r);border:1px solid var(--border);background:var(--bg-2);padding:24px}
+  .step-n{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px}
+  .step-n span:last-child{font:500 12px/1 var(--mono);color:var(--faint)}
+  .step .t-ico{background:var(--bg);position:relative;z-index:1}
+  .step h3{font-size:19px;letter-spacing:-.02em;margin-bottom:8px}
+  .step p{color:var(--muted);font-size:14.5px;margin:0}
+
+  /* Pakete */
+  .pk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:stretch}
+  .pk{position:relative;border-radius:24px;border:1px solid var(--border);background:var(--card);padding:30px;display:flex;flex-direction:column}
+  .pk.feat{background:linear-gradient(var(--bg-2),var(--bg-2)) padding-box,linear-gradient(160deg,rgba(231,215,180,.7),rgba(180,196,124,.2) 40%,rgba(255,255,255,.08)) border-box;border:1px solid transparent;box-shadow:0 30px 80px -30px rgba(180,196,124,.25)}
+  .pk-top{display:flex;align-items:center;justify-content:space-between}
+  .pk-name{display:flex;align-items:center;gap:12px;font-size:20px;font-weight:600;letter-spacing:-.02em}
+  .pk-name .t-ico{width:36px;height:36px;border-radius:10px}
+  .pk-name .t-ico .i{width:18px;height:18px}
+  .pill{font-size:12px;font-weight:500;padding:5px 10px;border-radius:999px;background:var(--olive);color:#0b100d}
+  .pk .for{color:var(--muted);font-size:15px;margin:18px 0 22px;min-height:48px}
+  .price{padding:18px 0;border-block:1px solid var(--border);margin-bottom:22px}
+  .price small{display:block;font-size:13px;color:var(--faint)}
+  .price b{font-size:26px;font-weight:600;letter-spacing:-.035em}
+  .pk ul{list-style:none;margin:0 0 28px;padding:0;display:grid;gap:11px;font-size:14.5px}
+  .pk li{display:flex;gap:10px;align-items:flex-start}
+  .pk li .i{width:17px;height:17px;color:var(--olive);stroke-width:2.2;margin-top:2px}
+  .pk .btn{margin-top:auto;width:100%}
+  .care{margin-top:14px;border-radius:24px;border:1px solid var(--border);background:var(--card);padding:26px 30px;display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center}
+  .care>.t-ico{width:48px;height:48px;border-radius:14px}
+  .care>.t-ico .i{width:22px;height:22px}
+  .care h3{font-size:20px;letter-spacing:-.02em;margin-bottom:4px}
+  .care p{margin:0;color:var(--muted);font-size:15px}
+  .care .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+  .care .tags span{font-size:12.5px;padding:5px 10px;border-radius:999px;border:1px solid var(--border);color:var(--muted)}
+
+  /* Über uns */
+  .about{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center}
+  .portrait{position:relative;aspect-ratio:4/5;border-radius:24px;overflow:hidden;border:1px solid var(--border);background:radial-gradient(80% 60% at 70% 20%,rgba(180,196,124,.16),transparent 60%),linear-gradient(180deg,#121a15,#0c120f);display:grid;place-items:center}
+  .portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .ph-inner{display:grid;justify-items:center;gap:12px;color:var(--faint);font-size:13.5px;margin-bottom:60px}
+  .ph-ico{width:64px;height:64px;border-radius:20px;display:grid;place-items:center;border:1px dashed var(--border-2);color:var(--muted)}
+  .ph-ico .i{width:26px;height:26px}
+  .portrait .badge{position:absolute;left:16px;right:16px;bottom:16px;display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:rgba(14,20,17,.7);border:1px solid var(--border);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+  .portrait .badge b{display:block;font-size:14.5px;font-weight:500}
+  .portrait .badge span{font-size:12.5px;color:var(--muted)}
+  .values{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:32px}
+  .value{border-radius:16px;border:1px solid var(--border);background:var(--card);padding:18px;display:flex;gap:14px}
+  .value .t-ico{width:36px;height:36px;border-radius:10px}
+  .value .t-ico .i{width:18px;height:18px}
+  .value b{display:block;font-size:15.5px;font-weight:500;margin-bottom:3px}
+  .value span{font-size:14px;color:var(--muted);line-height:1.5}
+
+  /* FAQ */
+  .faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+  .faq-side{position:sticky;top:120px}
+  .faq-side .btn{margin-top:26px}
+  .faq details{border-radius:16px;border:1px solid var(--border);background:var(--card);margin-bottom:10px;transition:border-color .2s,background .2s}
+  .faq details[open]{border-color:var(--border-2);background:var(--card-2)}
+  .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:20px 22px;font-size:16.5px;font-weight:500;letter-spacing:-.01em}
+  .faq summary::-webkit-details-marker{display:none}
+  .pm{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;flex:none;border:1px solid var(--border-2);transition:transform .3s var(--ease),background .2s,color .2s}
+  .pm .i{width:14px;height:14px;stroke-width:2}
+  .faq details[open] .pm{transform:rotate(45deg);background:var(--text);color:#0b100d;border-color:transparent}
+  .faq details p{margin:0;padding:0 22px 20px;color:var(--muted);font-size:15px;max-width:62ch}
+
+  /* Kontakt */
+  .contact{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:start}
+  .c-steps{list-style:none;margin:34px 0 0;padding:0;display:grid;gap:18px}
+  .c-steps li{display:flex;gap:16px}
+  .c-steps .n{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;flex:none;border:1px solid var(--border-2);font:500 12.5px/1 var(--mono);color:var(--olive)}
+  .c-steps b{display:block;font-weight:500;font-size:16px;margin:4px 0 2px}
+  .c-steps span{font-size:14.5px;color:var(--muted)}
+  .direct{display:grid;gap:10px;margin-top:32px}
+  .direct a,.direct div.row{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:14px;border:1px solid var(--border);background:var(--card);transition:border-color .2s}
+  .direct a[href]:hover{border-color:var(--border-2)}
+  .direct .t-ico{width:36px;height:36px;border-radius:10px}
+  .direct .t-ico .i{width:18px;height:18px}
+  .direct small{display:block;font-size:12px;color:var(--faint)}
+  .direct span{font-size:15px}
+  .todo{color:#e3b47c}
+  form.card{border-radius:24px;border:1px solid var(--border);background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015));padding:clamp(22px,3.2vw,34px)}
+  .seg{display:flex;flex-wrap:wrap;gap:8px;border:0;padding:0;margin:0 0 22px}
+  .seg legend{font-size:13.5px;color:var(--muted);margin-bottom:12px;padding:0}
+  .seg label{cursor:pointer}
+  .seg input{position:absolute;opacity:0;pointer-events:none}
+  .seg span{display:inline-flex;align-items:center;height:38px;padding:0 14px;border-radius:999px;border:1px solid var(--border-2);font-size:14px;color:var(--muted);transition:all .15s}
+  .seg input:checked+span{background:var(--text);color:#0b100d;border-color:transparent}
+  .seg input:focus-visible+span{outline:2px solid var(--olive);outline-offset:2px}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .fld{display:grid;gap:7px;margin-bottom:14px;min-width:0}
+  .fld label{font-size:13.5px;color:var(--muted)}
+  .fld input,.fld textarea,.fld select{width:100%;height:48px;padding:0 14px;border-radius:12px;border:1px solid var(--border-2);background:rgba(0,0,0,.25);color:var(--text);font:400 15.5px var(--sans);outline:none;transition:border-color .2s,box-shadow .2s}
+  .fld textarea{height:auto;min-height:120px;padding:12px 14px;resize:vertical;line-height:1.5}
+  .fld input::placeholder,.fld textarea::placeholder{color:var(--faint)}
+  .fld input:focus,.fld textarea:focus,.fld select:focus{border-color:var(--olive);box-shadow:0 0 0 4px var(--olive-dim)}
+  .fld select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a3a699' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:18px}
+  .fld select option{background:#121a15}
+  .consent{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--muted);margin:6px 0 20px;line-height:1.5;cursor:pointer}
+  .consent input{width:18px;height:18px;flex:none;margin:1px 0 0;accent-color:var(--olive)}
+  form.card .btn{width:100%}
+  .done{display:none;text-align:center;padding:36px 8px}
+  .done .ok{width:64px;height:64px;border-radius:20px;margin:0 auto 18px;display:grid;place-items:center;background:var(--olive-dim);color:var(--olive)}
+  .done .ok .i{width:30px;height:30px;stroke-width:2}
+  .done h3{font-size:26px;margin-bottom:8px}
+  .done p{color:var(--muted);margin:0}
+  form.sent .body{display:none}
+  form.sent .done{display:block}
+
+  /* Abschluss */
+  .cta{position:relative;border-radius:32px;overflow:hidden;border:1px solid var(--border);padding:clamp(48px,8vw,100px) 24px;text-align:center;isolation:isolate;background:#0d1410}
+  .cta .aurora{inset:-40% -20%;height:auto;filter:blur(50px)}
+  .cta .grid-bg{height:100%;mask-image:radial-gradient(ellipse 70% 80% at 50% 50%,#000 20%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 70% 80% at 50% 50%,#000 20%,transparent 75%)}
+  .cta h2{font-size:clamp(36px,5.6vw,72px);letter-spacing:-.05em;max-width:14ch;margin:20px auto 18px}
+  .cta .sub{max-width:520px;margin:0 auto 32px}
+
+  /* Footer */
+  footer{position:relative;margin-top:clamp(80px,10vw,120px);border-top:1px solid var(--border);padding:56px 0 0;overflow:hidden}
+  .foot{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:32px;font-size:14.5px;color:var(--muted)}
+  .foot h4{font-size:13.5px;font-weight:500;color:var(--text);letter-spacing:0;margin-bottom:16px}
+  .foot ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+  .foot a:hover{color:var(--text)}
+  .foot p{max-width:32ch;margin-top:16px}
+  .foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:48px;padding:22px 0;border-top:1px solid var(--border);font-size:13px;color:var(--faint)}
+  .lk{background:none;border:0;padding:0;cursor:pointer;color:inherit;font:inherit}
+  .lk:hover{color:var(--text)}
+  .giant{font-size:clamp(80px,19vw,280px);font-weight:700;letter-spacing:-.02em;line-height:.8;text-align:center;margin:30px 0 -.1em;white-space:nowrap;
+    background:linear-gradient(180deg,rgba(242,239,230,.13),rgba(242,239,230,0) 85%);-webkit-background-clip:text;background-clip:text;color:transparent;user-select:none}
+
+  /* Dialoge */
+  dialog{border:1px solid var(--border-2);border-radius:24px;background:#101713;color:var(--text);width:calc(100% - 32px);max-width:540px;padding:30px}
+  dialog::backdrop{background:rgba(4,7,5,.7);backdrop-filter:blur(6px)}
+  dialog h3{font-size:24px;margin-bottom:18px}
+  dialog dl{display:grid;grid-template-columns:auto 1fr;gap:9px 20px;font-size:15px;margin:0 0 24px}
+  dialog dt{color:var(--faint)}
+  dialog dd{margin:0}
+
+  /* Einblenden */
+  .rv{opacity:0;transform:translateY(20px);filter:blur(4px);transition:opacity .8s var(--ease),transform .8s var(--ease),filter .8s var(--ease)}
+  .rv.in{opacity:1;transform:none;filter:none}
+  .d1{transition-delay:.07s}.d2{transition-delay:.14s}.d3{transition-delay:.21s}
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+    .rv{opacity:1;transform:none;filter:none}
+    .preview{transform:none}
+  }
+
+  @media (max-width:1080px){
+    .f-scores{left:-12px}.f-lead{right:-12px}.f-speed{right:-8px}
+    .span-4,.span-3{grid-column:span 6}.span-2{grid-column:span 3}
+    .stats{grid-template-columns:1fr 1fr}
+    .stat:nth-child(2){border-right:0}
+    .stat:nth-child(-n+2){border-bottom:1px solid var(--border)}
+  }
+  @media (max-width:900px){
+    .links,.nav>.btn{display:none}
+    .burger{display:grid}
+    .menu-open .links{display:flex;position:fixed;top:84px;left:16px;right:16px;flex-direction:column;align-items:stretch;gap:4px;padding:10px;border-radius:22px;background:rgba(14,20,17,.96);border:1px solid var(--border);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 30px 60px -20px rgba(0,0,0,.8)}
+    .menu-open .links a{padding:14px 16px;font-size:16px}
+    .menu-open .links .m-cta{display:flex;margin-top:6px;color:#0b100d}
+    .sim,.about,.faq-grid,.contact{grid-template-columns:1fr}
+    .faq-side{position:static}
+    .steps{grid-template-columns:1fr 1fr}
+    .steps::before,.steps .line{display:none}
+    .pk-grid{grid-template-columns:1fr;max-width:520px;margin:0 auto}
+    .care{grid-template-columns:1fr;max-width:520px;margin:14px auto 0}
+    .foot{grid-template-columns:1fr 1fr}
+    .portrait{max-width:420px}
+  }
+  @media (max-width:640px){
+    .wrap{padding:0 16px}
+    .hero{padding-top:120px}
+    .preview-wrap{margin-top:52px}
+    .preview{transform:none!important}
+    .site{padding:16px 16px 20px;min-height:0}
+    .s-nav span{display:none}
+    .s-hero{grid-template-columns:1fr;margin-top:26px}
+    .s-img{min-height:110px}
+    .s-cards{grid-template-columns:1fr 1fr}
+    .s-cards div:last-child{display:none}
+    .float{position:relative;left:auto;right:auto;top:auto;bottom:auto;animation:none;margin:12px 0 0}
+    .f-lead,.f-speed,.preview-fade{display:none}
+    .f-scores{justify-content:space-between}
+    .span-2{grid-column:span 6}
+    .tile{min-height:0}
+    .v-design{grid-template-columns:1fr}
+    .steps,.values,.row2,.kpis{grid-template-columns:1fr}
+    .stat{padding:20px 18px}
+    .foot{grid-template-columns:1fr}
+    .trust{gap:8px 18px}
+  }
+</style>
+</head>
+<body>
+
+<!-- Icon-Sprite: einheitlicher Lucide-Stil, 24er Raster, gleiche Strichstärke -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gGrad" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#e7d7b4"/><stop offset="1" stop-color="#a3b56a"/></linearGradient>
+  </defs>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 8h16"/><path d="M4 16h16"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+  <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M9.94 15.5A2 2 0 0 0 8.5 14.06l-6.14-1.58a.5.5 0 0 1 0-.96L8.5 9.94A2 2 0 0 0 9.94 8.5l1.58-6.14a.5.5 0 0 1 .96 0l1.58 6.14a2 2 0 0 0 1.44 1.44l6.14 1.58a.5.5 0 0 1 0 .96l-6.14 1.58a2 2 0 0 0-1.44 1.44l-1.58 6.14a.5.5 0 0 1-.96 0z"/></symbol>
+  <symbol id="i-palette" viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r="1"/><circle cx="17.5" cy="10.5" r="1"/><circle cx="8.5" cy="7.5" r="1"/><circle cx="6.5" cy="12.5" r="1"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.65-.75 1.65-1.69 0-.44-.18-.83-.44-1.12-.29-.29-.44-.65-.44-1.12a1.64 1.64 0 0 1 1.67-1.67h2c3.05 0 5.55-2.5 5.55-5.55C21.97 6.01 17.46 2 12 2z"/></symbol>
+  <symbol id="i-mobile" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="3"/><path d="M12 18h.01"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.38 3.62a1 1 0 0 1 3 3L7.37 18.64a2 2 0 0 1-.85.5l-2.87.84a.5.5 0 0 1-.62-.62l.84-2.87a2 2 0 0 1 .5-.85z"/></symbol>
+  <symbol id="i-rocket" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="m2 12 8.58 3.91a2 2 0 0 0 1.66 0L21 12"/><path d="m2 17 8.58 3.91a2 2 0 0 0 1.66 0L21 17"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+  <symbol id="i-call" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 5-5.54 10.19-7.4 11.8a1 1 0 0 1-1.2 0C9.54 20.19 4 15 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-handshake" viewBox="0 0 24 24"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/></symbol>
+  <symbol id="i-trend" viewBox="0 0 24 24"><path d="M22 7 13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></symbol>
+  <!-- ZEUS-Zeichen: das Σ aus der ZΣVS-Wortmarke -->
+  <symbol id="i-sigma" viewBox="0 0 24 24"><path d="M18 4H6l7 8-7 8h12"/></symbol>
+</svg>
+
+<!-- NAVIGATION -->
+<div class="nav-shell">
+  <nav class="nav" id="nav" aria-label="Hauptnavigation">
+    <a href="#top" class="logo" aria-label="ZEUS lab – Startseite">
+      <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="url(#gGrad)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><use href="#i-sigma"/></svg></span>
+      <span class="wordmark">Z&#931;VS<small>lab</small></span>
+    </a>
+    <div class="links" id="links">
+      <a href="#leistungen">Leistungen</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#pakete">Pakete</a>
+      <a href="#ueber">Über uns</a>
+      <a href="#faq">FAQ</a>
+      <a href="#kontakt" class="btn btn-primary m-cta">Projekt anfragen</a>
+    </div>
+    <a href="#kontakt" class="btn btn-primary btn-sm">Projekt anfragen</a>
+    <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="links"><svg class="i"><use href="#i-menu"/></svg></button>
+  </nav>
+</div>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="tag rv"><span class="dot"><svg class="i"><use href="#i-sparkles"/></svg></span>Studio für Webdesign &amp; Entwicklung</span>
+    <h1 class="rv d1">Websites, die <span class="grad">Kunden gewinnen.</span></h1>
+    <p class="sub rv d2">ZEUS lab gestaltet und entwickelt moderne Websites für Unternehmen – blitzschnell, auffindbar und so gebaut, dass aus Besuchern Anfragen werden.</p>
+    <div class="ctas rv d3">
+      <a href="#kontakt" class="btn btn-primary">Projekt starten <svg class="i"><use href="#i-arrow"/></svg></a>
+      <a href="#leistungen" class="btn btn-ghost">Leistungen ansehen</a>
+    </div>
+    <div class="trust rv d3">
+      <span><svg class="i"><use href="#i-check"/></svg>Festpreis nach Erstgespräch</span>
+      <span><svg class="i"><use href="#i-check"/></svg>Individuelles Design</span>
+      <span><svg class="i"><use href="#i-check"/></svg>DSGVO-konform</span>
+    </div>
+
+    <div class="preview-wrap rv d2">
+      <div class="preview" id="preview">
+        <div class="preview-inner">
+          <div class="pbar"><i></i><i></i><i></i><div class="purl"><svg class="i"><use href="#i-lock"/></svg>ihr-unternehmen.at</div></div>
+          <div class="site">
+            <div class="s-nav"><b>STUDIO</b><span>Leistungen</span><span>Projekte</span><span>Kontakt</span><em>Anfragen</em></div>
+            <div class="s-hero">
+              <div>
+                <h4>Ihr Handwerk.<br><span class="grad">Perfekt online.</span></h4>
+                <p>Eine Website, die zeigt, was Sie können – und Kunden direkt zu Ihnen führt.</p>
+                <div class="s-btns"><span>Termin buchen</span><span>Mehr erfahren</span></div>
+              </div>
+              <div class="s-img"></div>
+            </div>
+            <div class="s-cards">
+              <div><b>Beratung</b>Persönlich &amp; vor Ort</div>
+              <div><b>Planung</b>Individuell für Sie</div>
+              <div><b>Umsetzung</b>Termingerecht</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="float f-scores" role="img" aria-label="Zielwerte: Performance, Barrierefreiheit, Best Practices und SEO je 100 von 100">
+        <div class="ring"><svg viewBox="0 0 64 64"><circle class="trk" cx="32" cy="32" r="24"/><circle class="val" cx="32" cy="32" r="24" transform="rotate(-90 32 32)"/><text x="32" y="32" text-anchor="middle" dominant-baseline="central">0</text></svg><small>Perfor&shy;mance</small></div>
+        <div class="ring"><svg viewBox="0 0 64 64"><circle class="trk" cx="32" cy="32" r="24"/><circle class="val" cx="32" cy="32" r="24" transform="rotate(-90 32 32)"/><text x="32" y="32" text-anchor="middle" dominant-baseline="central">0</text></svg><small>Barriere&shy;frei</small></div>
+        <div class="ring"><svg viewBox="0 0 64 64"><circle class="trk" cx="32" cy="32" r="24"/><circle class="val" cx="32" cy="32" r="24" transform="rotate(-90 32 32)"/><text x="32" y="32" text-anchor="middle" dominant-baseline="central">0</text></svg><small>Best Practice</small></div>
+        <div class="ring"><svg viewBox="0 0 64 64"><circle class="trk" cx="32" cy="32" r="24"/><circle class="val" cx="32" cy="32" r="24" transform="rotate(-90 32 32)"/><text x="32" y="32" text-anchor="middle" dominant-baseline="central">0</text></svg><small>SEO</small></div>
+      </div>
+      <div class="float f-lead">
+        <span class="ava"><svg class="i"><use href="#i-mail"/></svg></span>
+        <div><b>Neue Anfrage</b><span>Kontaktformular · gerade eben</span></div>
+        <span class="new">NEU</span>
+      </div>
+      <div class="float f-speed">
+        <small><svg class="i"><use href="#i-zap"/></svg>Ladezeit (mobil)</small>
+        <b>0,8<span>s</span></b>
+        <svg class="spark" viewBox="0 0 200 30" preserveAspectRatio="none"><defs><linearGradient id="sp" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#b4c47c" stop-opacity=".35"/><stop offset="1" stop-color="#b4c47c" stop-opacity="0"/></linearGradient></defs><path d="M0 8 L25 10 L50 9 L75 14 L100 13 L125 19 L150 21 L175 24 L200 25 L200 30 L0 30Z" fill="url(#sp)"/><path d="M0 8 L25 10 L50 9 L75 14 L100 13 L125 19 L150 21 L175 24 L200 25" fill="none" stroke="#b4c47c" stroke-width="1.6" vector-effect="non-scaling-stroke"/></svg>
+      </div>
+      <div class="preview-fade" aria-hidden="true"></div>
+    </div>
+
+    <div class="stats rv">
+      <div class="stat"><b class="grad">100%</b><span>Individuell gestaltet – keine Templates</span></div>
+      <div class="stat"><b>&lt;&nbsp;2&nbsp;s</b><span>Ladezeit als Ziel für jede Seite</span></div>
+      <div class="stat"><b>1</b><span>Ansprechpartner von Idee bis Launch</span></div>
+      <div class="stat"><b>EU</b><span>Hosting &amp; DSGVO-konform</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- LEISTUNGEN -->
+<section id="leistungen">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="tag"><span class="dot"><svg class="i"><use href="#i-layers"/></svg></span>Leistungen</span>
+      <h2 class="h2">Alles, was eine starke Website braucht.</h2>
+      <p class="sub">Design, Entwicklung, Sichtbarkeit und Betreuung – aus einer Hand und aufeinander abgestimmt.</p>
+    </div>
+
+    <div class="bento">
+      <article class="tile span-4 rv">
+        <span class="t-ico"><svg class="i"><use href="#i-palette"/></svg></span>
+        <h3>Webdesign &amp; UX</h3>
+        <p>Ein eigenständiges Design, das Ihre Marke trägt – mit klarer Nutzerführung, die Besucher zur Anfrage bringt. Sie sehen den Entwurf, bevor entwickelt wird.</p>
+        <div class="viz v-design">
+          <div class="type-spec"><b>Aa</b><span>Geist · 600</span></div>
+          <div class="swatches">
+            <div class="sw dark" style="background:#0d1410"><span>#0D1410</span></div>
+            <div class="sw" style="background:#b4c47c"><span>#B4C47C</span></div>
+            <div class="sw" style="background:#e7d7b4"><span>#E7D7B4</span></div>
+            <div class="sw" style="background:#f2efe6"><span>#F2EFE6</span></div>
+          </div>
+          <div class="chips-row"><span class="on">Primär-Button</span><span>Sekundär</span><span>Karten</span><span>Formulare</span><span>Icons</span></div>
+        </div>
+      </article>
+
+      <article class="tile span-2 rv d1">
+        <span class="t-ico"><svg class="i"><use href="#i-mobile"/></svg></span>
+        <h3>Mobile-first</h3>
+        <p>Perfekt auf jedem Gerät – die meisten Besucher kommen vom Handy.</p>
+        <div class="viz v-phone"><div class="phone"><div class="ph-img"></div><div class="ln"></div><div class="ln s"></div><div class="pbtn"></div></div></div>
+      </article>
+
+      <article class="tile span-2 rv">
+        <span class="t-ico"><svg class="i"><use href="#i-gauge"/></svg></span>
+        <h3>Performance</h3>
+        <p>Schlanker Code und optimierte Bilder – Ihre Seite lädt sofort.</p>
+        <div class="viz v-gauge">
+          <svg class="gauge" viewBox="0 0 120 74" role="img" aria-label="Beispiel: Ladezeit 0,8 Sekunden"><path class="g-trk" d="M10 64a50 50 0 0 1 100 0"/><path class="g-val" id="gaugeVal" d="M10 64a50 50 0 0 1 100 0"/><text class="gv" x="60" y="54" text-anchor="middle">0,8 s</text><text class="gl" x="60" y="70" text-anchor="middle">LCP MOBIL</text></svg>
+          <ul><li>Bilder <b>WebP</b></li><li>Caching <b>aktiv</b></li><li>CLS <b>0,00</b></li></ul>
+        </div>
+      </article>
+
+      <article class="tile span-2 rv d1">
+        <span class="t-ico"><svg class="i"><use href="#i-search"/></svg></span>
+        <h3>SEO &amp; Sichtbarkeit</h3>
+        <p>Technisch sauber aufgebaut, damit Google Sie findet – auch lokal.</p>
+        <div class="viz">
+          <div class="serp">
+            <div class="q"><svg class="i"><use href="#i-search"/></svg>tischler in meiner nähe</div>
+            <div class="top"><div class="u"><i></i>ihr-unternehmen.at</div><span class="rank">#1</span></div>
+            <b>Ihr Unternehmen – Meisterbetrieb</b>
+            <span class="d">Maßanfertigung, Beratung &amp; Montage …</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="tile span-2 rv d2">
+        <span class="t-ico"><svg class="i"><use href="#i-code"/></svg></span>
+        <h3>Entwicklung</h3>
+        <p>Moderner, wartbarer Code statt schwerfälliger Baukästen.</p>
+        <div class="viz"><div class="code"><span class="c">// schnell, sauber, zugänglich</span>
+<span class="k">export const</span> <span class="f">site</span> = {
+  design: <span class="s">'individuell'</span>,
+  mobile: <span class="k">true</span>,
+  ladezeit: <span class="s">'&lt; 2s'</span>,
+}</div></div>
+      </article>
+
+      <article class="tile span-3 rv">
+        <span class="t-ico"><svg class="i"><use href="#i-refresh"/></svg></span>
+        <h3>Relaunch &amp; Redesign</h3>
+        <p>Ihre bestehende Website – modern, schnell und klar. Inhalte ziehen mit, Rankings bleiben erhalten.</p>
+        <div class="viz">
+          <div class="v-compare">
+            <div><div class="mini old"><div class="bar1"></div><div class="txt"></div><div class="txt s"></div><div class="tbl"><i></i><i></i></div></div><small>Vorher</small></div>
+            <span class="arrow-c"><svg class="i"><use href="#i-arrow"/></svg></span>
+            <div><div class="mini new"><div class="bar2"><i></i><em></em></div><div class="h"></div><div class="h s"></div><div class="g"><i></i><i></i><i></i></div></div><small>Nachher</small></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="tile span-3 rv d1">
+        <span class="t-ico"><svg class="i"><use href="#i-shield"/></svg></span>
+        <h3>Hosting &amp; Betreuung</h3>
+        <p>Updates, Backups und Monitoring – Ihre Website bleibt sicher und aktuell.</p>
+        <div class="viz">
+          <div class="uptime" id="uptime" aria-hidden="true"></div>
+          <div class="up-meta"><span>Monitoring · 30 Tage</span><b>Online</b></div>
+          <div class="care-list">
+            <span><svg class="i"><use href="#i-check"/></svg>SSL &amp; Hosting in der EU</span>
+            <span><svg class="i"><use href="#i-check"/></svg>Regelmäßige Backups</span>
+            <span><svg class="i"><use href="#i-check"/></svg>Sicherheits-Updates</span>
+            <span><svg class="i"><use href="#i-check"/></svg>Änderungen auf Zuruf</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CALL TO ACTION – zwischen Leistungen und Demo, damit die Seite mit dem Formular endet -->
+<section id="start">
+  <div class="wrap">
+    <div class="cta rv">
+      <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div class="grid-bg" aria-hidden="true"></div>
+      <span class="tag"><span class="dot"><svg class="i"><use href="#i-rocket"/></svg></span>Bereit?</span>
+      <h2>Ihre neue Website beginnt mit <span class="grad">einem Gespräch.</span></h2>
+      <p class="sub">Kostenlos, unverbindlich und mit klarem Ergebnis: Sie wissen danach, was Ihre Website leisten kann.</p>
+      <div class="ctas"><a href="#kontakt" class="btn btn-primary">Projekt starten <svg class="i"><use href="#i-arrow"/></svg></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- SIMULATOR -->
+<section id="demo">
+  <div class="wrap sim">
+    <div class="rv">
+      <span class="tag"><span class="dot"><svg class="i"><use href="#i-clock"/></svg></span>Interaktive Demo</span>
+      <h2 class="h2">Jede Sekunde Ladezeit kostet Kunden.</h2>
+      <p class="sub">Ziehen Sie den Regler auf die Ladezeit Ihrer aktuellen Website und sehen Sie, wie stark die Absprungwahrscheinlichkeit gegenüber einer Seite steigt, die in einer Sekunde lädt.</p>
+      <div class="ctas" style="justify-content:flex-start;margin-top:30px"><a href="#kontakt" class="btn btn-ghost">Website prüfen lassen <svg class="i"><use href="#i-arrow"/></svg></a></div>
+    </div>
+    <div class="panel rv d1">
+      <div class="panel-top"><span>Ladezeit-Simulator</span><span class="live">LIVE</span></div>
+      <div class="lt-val"><label for="lt">Ladezeit Ihrer Website</label><output id="ltOut" for="lt">2,0<span>s</span></output></div>
+      <input type="range" id="lt" min="1" max="10" step="0.5" value="2" aria-describedby="verdict">
+      <div class="ticks"><span>1 s</span><span>3 s</span><span>5 s</span><span>7 s</span><span>10 s</span></div>
+      <div class="kpis">
+        <div class="kpi"><small>Höhere Absprung&shy;wahrscheinlichkeit</small><b id="kBounce">+16 %</b><div class="meter"><i id="mBounce"></i></div></div>
+        <div class="kpi"><small>Von 100 Besuchern zusätzlich verloren*</small><b id="kLost">≈ 6</b><div class="meter"><i id="mLost"></i></div></div>
+      </div>
+      <div class="verdict" id="verdict"><svg class="i"><use href="#i-info"/></svg><span id="vText"></span></div>
+      <p class="src">Absprungwerte: Google/SOASTA Research (2017), jeweils verglichen mit 1 s Ladezeit. *Vereinfachte Annahme mit 40 % Basis-Absprungrate. Simulation – keine Messung Ihrer Website.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABLAUF -->
+<section id="ablauf">
+  <div class="wrap">
+    <div class="head center rv">
+      <span class="tag"><span class="dot"><svg class="i"><use href="#i-trend"/></svg></span>Ablauf</span>
+      <h2 class="h2">In vier Schritten online.</h2>
+      <p class="sub">Klar strukturiert und transparent – Sie wissen jederzeit, wo Ihr Projekt steht.</p>
+    </div>
+    <div class="steps" id="steps">
+      <span class="line" id="stepLine" aria-hidden="true"></span>
+      <div class="step rv"><div class="step-n"><span class="t-ico"><svg class="i"><use href="#i-chat"/></svg></span><span>01</span></div><h3>Erstgespräch</h3><p>Ziele, Zielgruppe und Umfang klären. Danach erhalten Sie Festpreis und Zeitplan.</p></div>
+      <div class="step rv d1"><div class="step-n"><span class="t-ico"><svg class="i"><use href="#i-pen"/></svg></span><span>02</span></div><h3>Konzept &amp; Design</h3><p>Struktur und Design-Entwurf – Sie sehen Ihre Website, bevor entwickelt wird.</p></div>
+      <div class="step rv d2"><div class="step-n"><span class="t-ico"><svg class="i"><use href="#i-code"/></svg></span><span>03</span></div><h3>Entwicklung</h3><p>Schnelle, responsive Umsetzung. Den Fortschritt verfolgen Sie live über eine Vorschau.</p></div>
+      <div class="step rv d3"><div class="step-n"><span class="t-ico"><svg class="i"><use href="#i-rocket"/></svg></span><span>04</span></div><h3>Launch &amp; Betreuung</h3><p>Go-live mit Domain, SSL und Einschulung – und auf Wunsch laufende Betreuung.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PAKETE -->
+<section id="pakete">
+  <div class="wrap">
+    <div class="head center rv">
+      <span class="tag"><span class="dot"><svg class="i"><use href="#i-sparkles"/></svg></span>Pakete</span>
+      <h2 class="h2">Klarer Umfang. Fester Preis.</h2>
+      <p class="sub">Wählen Sie den passenden Einstieg. Den genauen Festpreis erhalten Sie nach dem kostenlosen Erstgespräch.</p>
+    </div>
+    <div class="pk-grid">
+      <div class="pk rv">
+        <div class="pk-top"><span class="pk-name"><span class="t-ico"><svg class="i"><use href="#i-zap"/></svg></span>Spark</span></div>
+        <p class="for">Onepager oder Landingpage – schnell und professionell online.</p>
+        <div class="price"><small>Preis</small><b data-cfg="priceSpark">auf Anfrage</b></div>
+        <ul>
+          <li><svg class="i"><use href="#i-check"/></svg>Onepager oder Landingpage</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Individuelles Design</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Kontaktformular</li>
+          <li><svg class="i"><use href="#i-check"/></svg>SEO-Grundlagen</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Impressum &amp; Datenschutz eingebunden</li>
+        </ul>
+        <a href="#kontakt" class="btn btn-ghost" data-pkg="Spark">Spark anfragen</a>
+      </div>
+      <div class="pk feat rv d1">
+        <div class="pk-top"><span class="pk-name"><span class="t-ico"><svg class="i"><use href="#i-layers"/></svg></span>Bolt</span><span class="pill">Beliebt</span></div>
+        <p class="for">Die vollständige Unternehmenswebsite für Ihren professionellen Auftritt.</p>
+        <div class="price"><small>Preis</small><b data-cfg="priceBolt">auf Anfrage</b></div>
+        <ul>
+          <li><svg class="i"><use href="#i-check"/></svg>Bis zu 8 Unterseiten</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Design-Entwurf zur Freigabe</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Inhalte selbst pflegbar (CMS)</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Performance- &amp; SEO-Optimierung</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Einschulung &amp; Übergabe</li>
+        </ul>
+        <a href="#kontakt" class="btn btn-primary" data-pkg="Bolt">Bolt anfragen <svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="pk rv d2">
+        <div class="pk-top"><span class="pk-name"><span class="t-ico"><svg class="i"><use href="#i-rocket"/></svg></span>Olymp</span></div>
+        <p class="for">Individuelle Lösungen: Webapps, Buchungen, Schnittstellen, mehrsprachig.</p>
+        <div class="price"><small>Preis</small><b data-cfg="priceOlymp">nach Umfang</b></div>
+        <ul>
+          <li><svg class="i"><use href="#i-check"/></svg>Konzept &amp; Anforderungsanalyse</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Individuelle Funktionen</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Anbindung bestehender Systeme</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Testphase &amp; Dokumentation</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Mehrsprachig möglich</li>
+        </ul>
+        <a href="#kontakt" class="btn btn-ghost" data-pkg="Olymp">Olymp besprechen</a>
+      </div>
+    </div>
+    <div class="care rv">
+      <span class="t-ico"><svg class="i"><use href="#i-shield"/></svg></span>
+      <div>
+        <h3>Care – laufende Betreuung</h3>
+        <p>Hosting, Updates, Backups und Änderungen – monatlich kündbar. <span data-cfg="priceCare" style="color:var(--text)">Preis auf Anfrage</span></p>
+        <div class="tags"><span>Hosting in der EU</span><span>Updates &amp; Backups</span><span>Monitoring</span><span>Stundenkontingent</span></div>
+      </div>
+      <a href="#kontakt" class="btn btn-ghost" data-pkg="Care">Care anfragen</a>
+    </div>
+  </div>
+</section>
+
+<!-- ÜBER UNS -->
+<section id="ueber">
+  <div class="wrap about">
+    <div class="portrait rv" id="portrait">
+      <!-- Foto später einsetzen: <img src="assets/portrait.jpg" alt="Vorname Nachname, Gründer von ZEUS lab"> -->
+      <div class="ph-inner"><span class="ph-ico"><svg class="i"><use href="#i-camera"/></svg></span>Foto folgt</div>
+      <div class="badge"><span class="mark" style="width:36px;height:36px"><svg viewBox="0 0 24 24" fill="none" stroke="url(#gGrad)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><use href="#i-sigma"/></svg></span><div><b data-cfg="owner"></b><span>Gründer · ZEUS lab</span></div></div>
+    </div>
+    <div class="rv d1">
+      <span class="tag"><span class="dot"><svg class="i"><use href="#i-user"/></svg></span>Über uns</span>
+      <h2 class="h2">Design und Technik. <span class="grad">Aus einer Hand.</span></h2>
+      <p class="sub"><span data-cfg="founderIntro">ZEUS lab steht für Websites, die nicht nur gut aussehen, sondern technisch sauber gebaut sind und messbar wirken.</span> Statt überladener Baukästen entstehen schlanke, individuelle Lösungen – mit einem festen Ansprechpartner von der ersten Idee bis lange nach dem Launch.</p>
+      <div class="values">
+        <div class="value"><span class="t-ico"><svg class="i"><use href="#i-handshake"/></svg></span><div><b>Persönlich</b><span>Ein Ansprechpartner, kurze Wege, schnelle Antworten.</span></div></div>
+        <div class="value"><span class="t-ico"><svg class="i"><use href="#i-sparkles"/></svg></span><div><b>Individuell</b><span>Keine Templates – jede Website ist ein Unikat.</span></div></div>
+        <div class="value"><span class="t-ico"><svg class="i"><use href="#i-zap"/></svg></span><div><b>Schnell</b><span>Performance ist kein Extra, sondern Standard.</span></div></div>
+        <div class="value"><span class="t-ico"><svg class="i"><use href="#i-eye"/></svg></span><div><b>Transparent</b><span>Festpreis und Zeitplan, bevor es losgeht.</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap faq-grid">
+    <div class="faq-side rv">
+      <span class="tag"><span class="dot"><svg class="i"><use href="#i-info"/></svg></span>FAQ</span>
+      <h2 class="h2">Häufige Fragen.</h2>
+      <p class="sub">Ihre Frage ist nicht dabei? Schreiben Sie uns – wir antworten persönlich.</p>
+      <a href="#kontakt" class="btn btn-ghost">Frage stellen <svg class="i"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="faq rv d1">
+      <details open><summary>Wie lange dauert es, bis meine Website online ist?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><p>Das hängt vom Umfang ab. Ein Onepager ist deutlich schneller umgesetzt als eine Website mit vielen Unterseiten oder individuellen Funktionen. Nach dem Erstgespräch erhalten Sie einen konkreten Zeitplan.</p></details>
+      <details><summary>Was kostet eine Website?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><p>Jedes Projekt wird nach dem kostenlosen Erstgespräch zu einem Festpreis angeboten. Sie wissen vorab genau, was Sie bekommen – ohne versteckte Kosten.</p></details>
+      <details><summary>Kann ich Inhalte später selbst ändern?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><p>Ja, wenn gewünscht. Texte, Bilder und Beiträge lassen sich über ein einfaches Redaktionssystem pflegen. Alternativ übernehmen wir Änderungen im Rahmen von Care.</p></details>
+      <details><summary>Lohnt sich ein Relaunch meiner bestehenden Website?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><p>Oft ja – vor allem, wenn die Seite langsam ist, am Handy schlecht funktioniert oder kaum Anfragen bringt. Bestehende Inhalte und Bilder werden übernommen, Weiterleitungen sichern Ihr Google-Ranking.</p></details>
+      <details><summary>Kümmert ihr euch um Domain und Hosting?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><p>Ja. Auf Wunsch übernehmen wir Domain, Hosting in der EU und SSL-Zertifikat und begleiten den Umzug von Ihrer bestehenden Seite.</p></details>
+      <details><summary>Ist meine Website DSGVO-konform?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><p>Datenschutz wird von Anfang an mitgedacht: datensparsame Technik, keine unnötigen Drittanbieter, Hosting in der EU und eingebundene Rechtstexte. Die Rechtstexte selbst sollten von Ihnen bzw. einer Rechtsberatung geprüft werden.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section id="kontakt">
+  <div class="wrap contact">
+    <div class="rv">
+      <span class="tag"><span class="dot"><svg class="i"><use href="#i-mail"/></svg></span>Kontakt</span>
+      <h2 class="h2">Lassen Sie uns über Ihr Projekt sprechen.</h2>
+      <p class="sub">Ein paar Sätze genügen. Für die erste Anfrage brauchen Sie kein fertiges Konzept.</p>
+      <ol class="c-steps">
+        <li><span class="n">01</span><div><b>Anfrage senden</b><span>Kurz beschreiben, was Ihre Website leisten soll.</span></div></li>
+        <li><span class="n">02</span><div><b>Kostenloses Erstgespräch</b><span>Wir klären Ziel, Umfang und Rahmenbedingungen.</span></div></li>
+        <li><span class="n">03</span><div><b>Festpreis-Angebot</b><span>Sie erhalten Preis und Zeitplan – unverbindlich.</span></div></li>
+      </ol>
+      <div class="direct">
+        <a data-cfg-href="mailto"><span class="t-ico"><svg class="i"><use href="#i-mail"/></svg></span><div><small>E-Mail</small><span data-cfg="email"></span></div></a>
+        <a data-cfg-href="tel"><span class="t-ico"><svg class="i"><use href="#i-call"/></svg></span><div><small>Telefon</small><span data-cfg="phone"></span></div></a>
+        <div class="row"><span class="t-ico"><svg class="i"><use href="#i-pin"/></svg></span><div><small>Standort</small><span data-cfg="city"></span></div></div>
+      </div>
+    </div>
+
+    <form class="card rv d1" id="form" novalidate>
+      <div class="body">
+        <fieldset class="seg">
+          <legend>Worum geht es?</legend>
+          <label><input type="radio" name="type" value="Neue Website" checked><span>Neue Website</span></label>
+          <label><input type="radio" name="type" value="Relaunch"><span>Relaunch</span></label>
+          <label><input type="radio" name="type" value="Landingpage"><span>Landingpage</span></label>
+          <label><input type="radio" name="type" value="Webapp"><span>Webapp</span></label>
+          <label><input type="radio" name="type" value="Betreuung"><span>Betreuung</span></label>
+        </fieldset>
+        <div class="row2">
+          <div class="fld"><label for="fn">Name *</label><input id="fn" name="name" required autocomplete="name" placeholder="Max Mustermann"></div>
+          <div class="fld"><label for="fc">Unternehmen</label><input id="fc" name="company" autocomplete="organization" placeholder="Firma GmbH"></div>
+        </div>
+        <div class="row2">
+          <div class="fld"><label for="fe">E-Mail *</label><input id="fe" name="email" type="email" required autocomplete="email" placeholder="name@firma.at"></div>
+          <div class="fld"><label for="fp">Paket</label><select id="fp" name="package"><option value="">Noch offen</option><option>Spark</option><option>Bolt</option><option>Olymp</option><option>Care</option></select></div>
+        </div>
+        <div class="fld"><label for="fu">Bestehende Website</label><input id="fu" name="url" type="url" placeholder="https://"></div>
+        <div class="fld"><label for="fm">Ihr Vorhaben *</label><textarea id="fm" name="msg" required placeholder="Was soll Ihre neue Website leisten?"></textarea></div>
+        <label class="consent"><input type="checkbox" required id="fx"><span>Ich stimme zu, dass meine Angaben zur Bearbeitung meiner Anfrage verwendet werden.</span></label>
+        <button class="btn btn-primary" type="submit">Anfrage senden <svg class="i"><use href="#i-arrow"/></svg></button>
+      </div>
+      <div class="done" aria-live="polite">
+        <div class="ok"><svg class="i"><use href="#i-check"/></svg></div>
+        <h3>Danke für Ihre Anfrage!</h3>
+        <p>Wir melden uns in Kürze persönlich bei Ihnen.<br><small style="color:var(--faint)">Vorschau: Das Formular ist noch nicht mit einem Versanddienst verbunden.</small></p>
+      </div>
+    </form>
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a href="#top" class="logo"><span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="url(#gGrad)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><use href="#i-sigma"/></svg></span><span class="wordmark">Z&#931;VS<small>lab</small></span></a>
+        <p>Moderne Websites für Unternehmen – Design, Entwicklung und Betreuung aus einer Hand.</p>
+      </div>
+      <div><h4>Leistungen</h4><ul><li><a href="#leistungen">Webdesign &amp; UX</a></li><li><a href="#leistungen">Entwicklung</a></li><li><a href="#leistungen">Relaunch</a></li><li><a href="#leistungen">Hosting &amp; Betreuung</a></li></ul></div>
+      <div><h4>Unternehmen</h4><ul><li><a href="#ablauf">Ablauf</a></li><li><a href="#pakete">Pakete</a></li><li><a href="#ueber">Über uns</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+      <div><h4>Kontakt</h4><ul><li><a data-cfg-href="mailto"><span data-cfg="email"></span></a></li><li><a data-cfg-href="tel"><span data-cfg="phone"></span></a></li><li><span data-cfg="city"></span></li></ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> <span data-cfg="legalName"></span></span>
+      <span><button class="lk" id="openImp">Impressum</button> · <button class="lk" id="openPriv">Datenschutz</button></span>
+    </div>
+  </div>
+  <div class="giant" aria-hidden="true">Z&#931;VS lab</div>
+</footer>
+
+<dialog id="imp" aria-labelledby="impT">
+  <h3 id="impT">Impressum</h3>
+  <dl>
+    <dt>Unternehmen</dt><dd data-cfg="legalName"></dd>
+    <dt>Inhaber</dt><dd data-cfg="owner"></dd>
+    <dt>Anschrift</dt><dd data-cfg="address"></dd>
+    <dt>E-Mail</dt><dd data-cfg="email"></dd>
+    <dt>Telefon</dt><dd data-cfg="phone"></dd>
+    <dt>UID</dt><dd data-cfg="uid"></dd>
+    <dt>Gewerbe</dt><dd data-cfg="trade"></dd>
+    <dt>Behörde</dt><dd data-cfg="authority"></dd>
+  </dl>
+  <form method="dialog"><button class="btn btn-ghost btn-sm">Schließen</button></form>
+</dialog>
+<dialog id="priv" aria-labelledby="privT">
+  <h3 id="privT">Datenschutz</h3>
+  <p style="color:var(--muted)">Die Datenschutzerklärung wird vor dem Livegang ergänzt. Diese Vorschau lädt Schriften von Google Fonts; im Livebetrieb sollten sie lokal eingebunden werden.</p>
+  <form method="dialog"><button class="btn btn-ghost btn-sm">Schließen</button></form>
+</dialog>
+
+<script>
+  /* ============================================================
+     FIRMENDATEN – hier zentral pflegen.
+     null = noch offen; erscheint auf der Seite als „… folgt",
+     damit nichts Erfundenes live geht.
+     ============================================================ */
+  const CONFIG = {
+    legalName: 'ZEUS lab',
+    owner: null,          // z. B. 'Vorname Nachname'
+    email: null,          // z. B. 'hallo@zeuslab.at'
+    phone: null,          // z. B. '+43 660 000 00 00'
+    city: null,           // z. B. 'Wien, Österreich'
+    address: null,        // vollständige Geschäftsanschrift
+    uid: null,            // UID-Nummer, falls vorhanden
+    trade: null,          // Gewerbe
+    authority: null,      // zuständige Gewerbebehörde
+    founderIntro: null,   // eigener Einleitungssatz für „Über uns"
+    priceSpark: null, priceBolt: null, priceOlymp: null, priceCare: null
+  };
+  const LABEL = {email: 'E-Mail folgt', phone: 'Telefon folgt', city: 'Standort folgt', owner: 'Name folgt'};
+  document.querySelectorAll('[data-cfg]').forEach(el => {
+    const k = el.dataset.cfg, v = CONFIG[k];
+    if (v) el.textContent = v;
+    else if (LABEL[k]) { el.textContent = LABEL[k]; if (el.closest('dialog')) el.classList.add('todo'); }
+    else if (!el.textContent.trim()) { el.textContent = 'folgt'; el.classList.add('todo'); }
+  });
+  document.querySelectorAll('[data-cfg-href]').forEach(a => {
+    const t = a.dataset.cfgHref, v = t === 'mailto' ? CONFIG.email : CONFIG.phone;
+    if (v) a.href = t + ':' + v.replace(/\s/g, '');
+  });
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const ease = p => 1 - Math.pow(1 - p, 3);
+  // Zahl und Bogen laufen im selben Frame, damit sie nie auseinanderdriften
+  const animate = (dur, frame) => {
+    if (reduce) { frame(1); return; }
+    const t0 = performance.now();
+    const tick = t => { const p = Math.min(1, (t - t0) / dur); frame(ease(p)); if (p < 1) requestAnimationFrame(tick); };
+    requestAnimationFrame(tick);
+  };
+
+  /* Navigation, Vorschau-Neigung, Ablauf-Linie */
+  const nav = document.getElementById('nav');
+  const links = [...document.querySelectorAll('#links a:not(.m-cta)')];
+  const targets = links.map(a => document.querySelector(a.getAttribute('href')));
+  const preview = document.getElementById('preview');
+  const steps = document.getElementById('steps'), stepLine = document.getElementById('stepLine');
+  const onScroll = () => {
+    const y = scrollY, vh = innerHeight;
+    if (!document.body.classList.contains('menu-open')) nav.classList.toggle('solid', y > 24);
+    let k = -1; targets.forEach((t, i) => { if (t.getBoundingClientRect().top < 140) k = i; });
+    links.forEach((a, i) => a.classList.toggle('active', i === k));
+    if (!reduce && innerWidth > 640) {
+      const p = Math.min(1, Math.max(0, y / (vh * .55)));
+      preview.style.transform = `rotateX(${(14 * (1 - p)).toFixed(2)}deg) scale(${(.96 + .04 * p).toFixed(3)})`;
+    }
+    const r = steps.getBoundingClientRect();
+    const prog = Math.min(1, Math.max(0, (vh * .75 - r.top) / (r.height + vh * .2)));
+    stepLine.style.width = `calc((100% - 88px) * ${prog.toFixed(3)})`;
+  };
+  addEventListener('scroll', onScroll, {passive: true});
+  addEventListener('resize', onScroll);
+  onScroll();
+
+  const burger = document.getElementById('burger');
+  const setMenu = o => {
+    document.body.classList.toggle('menu-open', o);
+    burger.setAttribute('aria-expanded', o);
+    burger.setAttribute('aria-label', o ? 'Menü schließen' : 'Menü öffnen');
+    burger.querySelector('use').setAttribute('href', o ? '#i-x' : '#i-menu');
+    if (o) nav.classList.add('solid'); else onScroll();
+  };
+  burger.onclick = () => setMenu(!document.body.classList.contains('menu-open'));
+  document.querySelectorAll('#links a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+
+  /* Lichtschein folgt dem Zeiger auf den Bento-Kacheln */
+  document.querySelectorAll('.tile').forEach(t => t.addEventListener('pointermove', e => {
+    const r = t.getBoundingClientRect();
+    t.style.setProperty('--x', (e.clientX - r.left) + 'px');
+    t.style.setProperty('--y', (e.clientY - r.top) + 'px');
+  }));
+
+  /* Score-Ringe: Umfang 2·π·24 = 150.8 */
+  const C_RING = 150.8;
+  setTimeout(() => document.querySelectorAll('.ring').forEach(r => {
+    const arc = r.querySelector('.val'), num = r.querySelector('text');
+    animate(1600, p => { arc.style.strokeDashoffset = (C_RING * (1 - p)).toFixed(2); num.textContent = Math.round(100 * p); });
+  }), reduce ? 0 : 900);
+
+  /* Uptime-Balken */
+  document.getElementById('uptime').innerHTML = Array.from({length: 30}, (_, i) => `<i style="animation-delay:${i * 25}ms"></i>`).join('');
+
+  /* Einblenden + Tacho starten, sobald sichtbar (Halbkreis r=50 → Länge 157.08) */
+  const gauge = document.getElementById('gaugeVal');
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('in'); io.unobserve(e.target);
+    if (e.target.contains(gauge)) animate(1600, p => { gauge.style.strokeDashoffset = (157.08 * (1 - .92 * p)).toFixed(2); });
+  }), {threshold: .12, rootMargin: '0px 0px -40px 0px'});
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+  /* Ladezeit-Simulator – Stützwerte Google/SOASTA 2017 (Absprung-Anstieg ggü. 1 s) */
+  const PTS = [[1, 0], [3, 32], [5, 90], [6, 106], [10, 123]];
+  const interp = x => { for (let i = 1; i < PTS.length; i++) { const [x0, y0] = PTS[i - 1], [x1, y1] = PTS[i]; if (x <= x1) return y0 + (y1 - y0) * (x - x0) / (x1 - x0); } return 123; };
+  const lt = document.getElementById('lt'), out = document.getElementById('ltOut');
+  const kB = document.getElementById('kBounce'), kL = document.getElementById('kLost');
+  const mB = document.getElementById('mBounce'), mL = document.getElementById('mLost');
+  const verdict = document.getElementById('verdict'), vText = document.getElementById('vText');
+  const COL = {good: 'var(--olive)', warn: '#e3b47c', bad: '#e48f84'};
+  const upd = () => {
+    const x = +lt.value, inc = interp(x), base = 40, extra = Math.min(100 - base, base * inc / 100);
+    const cls = x <= 2 ? 'good' : x <= 4 ? 'warn' : 'bad';
+    lt.style.setProperty('--p', ((x - 1) / 9 * 100) + '%');
+    out.innerHTML = x.toFixed(1).replace('.', ',') + '<span>s</span>';
+    kB.textContent = '+' + Math.round(inc) + ' %';
+    kL.textContent = '≈ ' + Math.round(extra);
+    kB.className = kL.className = cls;
+    mB.style.width = (inc / 123 * 100) + '%';
+    mL.style.width = (extra / (100 - base) * 100) + '%';
+    mB.style.background = mL.style.background = COL[cls];
+    verdict.className = 'verdict' + (cls === 'good' ? '' : ' ' + cls);
+    vText.textContent = cls === 'good' ? 'Schnell – genau hier sollte jede Website liegen.'
+      : cls === 'warn' ? 'Spürbare Verluste. Mit Optimierung ist meist deutlich mehr möglich.'
+      : 'Kritisch – viele Besucher springen ab, bevor die Seite überhaupt sichtbar ist.';
+  };
+  lt.addEventListener('input', upd); upd();
+
+  /* Paket-Buttons wählen das Paket im Formular vor */
+  document.querySelectorAll('[data-pkg]').forEach(a => a.addEventListener('click', () => { document.getElementById('fp').value = a.dataset.pkg; }));
+
+  /* Formular – Vorschau ohne Versand */
+  const form = document.getElementById('form');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const bad = [...form.querySelectorAll('[required]')].find(el => !el.checkValidity());
+    if (bad) { bad.focus(); bad.reportValidity(); return; }
+    form.classList.add('sent');
+  });
+
+  document.getElementById('openImp').onclick = () => document.getElementById('imp').showModal();
+  document.getElementById('openPriv').onclick = () => document.getElementById('priv').showModal();
+</script>
+</body>
+</html>
