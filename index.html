@@ -934,12 +934,17 @@
   <dl>
     <dt>Unternehmen</dt><dd data-cfg="legalName"></dd>
     <dt>Inhaber</dt><dd data-cfg="owner"></dd>
+    <dt>Rechtsform</dt><dd data-cfg="legalForm"></dd>
     <dt>Anschrift</dt><dd data-cfg="address"></dd>
     <dt>E-Mail</dt><dd data-cfg="email"></dd>
     <dt>Telefon</dt><dd data-cfg="phone"></dd>
+    <dt>Gegenstand</dt><dd>Webdesign und Webentwicklung</dd>
     <dt>UID</dt><dd data-cfg="uid"></dd>
+    <dt>Firmenbuch</dt><dd data-cfg="register"></dd>
     <dt>Gewerbe</dt><dd data-cfg="trade"></dd>
     <dt>Behörde</dt><dd data-cfg="authority"></dd>
+    <dt>Kammer</dt><dd data-cfg="chamber"></dd>
+    <dt>Vorschriften</dt><dd>Gewerbeordnung (GewO), abrufbar unter <a href="https://www.ris.bka.gv.at" target="_blank" rel="noopener" style="text-decoration:underline">ris.bka.gv.at</a></dd>
   </dl>
   <form method="dialog"><button class="btn btn-ghost btn-sm">Schließen</button></form>
 </dialog>
@@ -958,13 +963,16 @@
   const CONFIG = {
     legalName: 'ZEUS lab',
     owner: null,          // z. B. 'Vorname Nachname'
-    email: null,          // z. B. 'hallo@zeuslab.at'
-    phone: null,          // z. B. '+43 660 000 00 00'
+    email: null,          // kommt mit der Domain, z. B. 'office@zeuslab.at'
+    phone: '+43 676 9551 1661',
     city: null,           // z. B. 'Wien, Österreich'
     address: null,        // vollständige Geschäftsanschrift
-    uid: null,            // UID-Nummer, falls vorhanden
-    trade: null,          // Gewerbe
-    authority: null,      // zuständige Gewerbebehörde
+    legalForm: null,      // z. B. 'Einzelunternehmen' oder 'e.U.'
+    register: null,       // Firmenbuchnummer + -gericht, nur falls eingetragen (z. B. e.U.)
+    uid: null,            // UID-Nummer, falls vorhanden (als Kleinunternehmer evtl. keine)
+    trade: null,          // Gewerbe laut Gewerbeschein
+    authority: null,      // Gewerbebehörde, z. B. 'Bezirkshauptmannschaft …' / 'Magistrat …'
+    chamber: null,        // z. B. 'Wirtschaftskammer …, Fachgruppe UBIT'
     founderIntro: null,   // eigener Einleitungssatz für „Über uns"
     priceSpark: null, priceBolt: null, priceOlymp: null, priceCare: null
   };
