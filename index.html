@@ -818,9 +818,10 @@
 <section id="ueber">
   <div class="wrap about">
     <div class="portrait rv" id="portrait">
-      <!-- Foto später einsetzen: <img src="assets/portrait.jpg" alt="Vorname Nachname, Gründer von ZEUS lab"> -->
       <div class="ph-inner"><span class="ph-ico"><svg class="i"><use href="#i-camera"/></svg></span>Foto folgt</div>
-      <div class="badge"><span class="mark" style="width:36px;height:36px"><svg viewBox="0 0 24 24" fill="none" stroke="url(#gGrad)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><use href="#i-sigma"/></svg></span><div><b data-cfg="owner"></b><span>Gründer · ZEUS lab</span></div></div>
+      <!-- Foto einfach als assets/portrait.jpg ablegen – fehlt die Datei, entfernt sich das Bild selbst und der Platzhalter bleibt -->
+      <img src="assets/portrait.jpg" alt="Portrait – ZEUS lab, Wiener Neustadt" loading="lazy" onerror="this.remove()">
+      <div class="badge"><span class="mark" style="width:36px;height:36px"><svg viewBox="0 0 24 24" fill="none" stroke="url(#gGrad)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><use href="#i-sigma"/></svg></span><div><b data-cfg="owner"></b><span>ZEUS lab · Wiener Neustadt</span></div></div>
     </div>
     <div class="rv d1">
       <span class="tag"><span class="dot"><svg class="i"><use href="#i-user"/></svg></span>Über uns</span>
@@ -965,7 +966,7 @@
     owner: null,          // z. B. 'Vorname Nachname'
     email: null,          // kommt mit der Domain, z. B. 'office@zeuslab.at'
     phone: '+43 676 9551 1661',
-    city: null,           // z. B. 'Wien, Österreich'
+    city: 'Wiener Neustadt, Österreich',
     address: null,        // vollständige Geschäftsanschrift
     legalForm: null,      // z. B. 'Einzelunternehmen' oder 'e.U.'
     register: null,       // Firmenbuchnummer + -gericht, nur falls eingetragen (z. B. e.U.)
@@ -973,7 +974,7 @@
     trade: null,          // Gewerbe laut Gewerbeschein
     authority: null,      // Gewerbebehörde, z. B. 'Bezirkshauptmannschaft …' / 'Magistrat …'
     chamber: null,        // z. B. 'Wirtschaftskammer …, Fachgruppe UBIT'
-    founderIntro: null,   // eigener Einleitungssatz für „Über uns"
+    founderIntro: 'Ich habe ZEUS lab in Wiener Neustadt gegründet, um Websites zu bauen, die ich selbst gern benutzen würde. Mein eigenes Projekt ZEUS Protocol – eine Web-App mit Cloud-Sync sowie Whoop- und Apple-Health-Anbindung – zeigt, worauf ich Wert lege: durchdachtes Design, saubere Technik und Datenschutz.',
     priceSpark: null, priceBolt: null, priceOlymp: null, priceCare: null
   };
   const LABEL = {email: 'E-Mail folgt', phone: 'Telefon folgt', city: 'Standort folgt', owner: 'Name folgt'};
