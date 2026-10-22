@@ -1,2 +1,4 @@
 .DS_Store
 *.tmp.html
+# Originalfotos bleiben lokal, veröffentlicht wird nur das zugeschnittene portrait.jpg
+assets/Alexander Stelzer LR_*
