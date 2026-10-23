@@ -401,6 +401,7 @@
   .foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:48px;padding:22px 0;border-top:1px solid var(--border);font-size:13px;color:var(--faint)}
   .lk{background:none;border:0;padding:0;cursor:pointer;color:inherit;font:inherit}
   .lk:hover{color:var(--text)}
+  .lk.li .i{display:inline-block;width:13px;height:13px;margin-right:5px;vertical-align:-1px;stroke-width:1.8}
   .giant{font-size:clamp(80px,19vw,280px);font-weight:700;letter-spacing:-.02em;line-height:.8;text-align:center;margin:30px 0 -.1em;white-space:nowrap;
     background:linear-gradient(180deg,rgba(242,239,230,.13),rgba(242,239,230,0) 85%);-webkit-background-clip:text;background-clip:text;color:transparent;user-select:none}
 
@@ -507,6 +508,7 @@
   <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></symbol>
   <symbol id="i-camera" viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></symbol>
   <!-- ZEUS-Zeichen: das Σ aus der ZΣVS-Wortmarke -->
+  <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></symbol>
   <symbol id="i-sigma" viewBox="0 0 24 24"><path d="M18 4H6l7 8-7 8h12"/></symbol>
 </svg>
 
@@ -933,7 +935,7 @@
     </div>
     <div class="foot-bottom">
       <span>© <span id="year"></span> <span data-cfg="legalName"></span></span>
-      <span><button class="lk" id="openImp">Impressum</button> · <button class="lk" id="openPriv">Datenschutz</button></span>
+      <span><button class="lk" id="openImp">Impressum</button> · <button class="lk" id="openPriv">Datenschutz</button> · <a class="lk li" href="https://www.linkedin.com/in/alexander-stelzer-3b62881a0/" target="_blank" rel="noopener" aria-label="Alexander Stelzer auf LinkedIn"><svg class="i"><use href="#i-linkedin"/></svg>LinkedIn</a></span>
     </div>
   </div>
   <div class="giant" aria-hidden="true">Z&#931;VS lab</div>
@@ -1146,7 +1148,7 @@
     'Vorschau: Das Formular ist noch nicht mit einem Versanddienst verbunden.': 'Preview: the form is not yet connected to a sending service.',
     // Footer & Rechtliches
     'Moderne Websites für Unternehmen – Design, Entwicklung und Betreuung aus einer Hand.': 'Modern websites for businesses – design, development and support from a single source.',
-    'Impressum': 'Legal notice', 'Datenschutz': 'Privacy',
+    'Impressum': 'Legal notice', 'Alexander Stelzer auf LinkedIn': 'Alexander Stelzer on LinkedIn', 'Datenschutz': 'Privacy',
     'Inhaber': 'Owner', 'Rechtsform': 'Legal form', 'Anschrift': 'Address', 'Gegenstand': 'Business purpose',
     'Webdesign und Webentwicklung': 'Web design and web development', 'UID': 'VAT ID', 'Firmenbuch': 'Company register',
     'Gewerbe': 'Trade licence', 'Behörde': 'Authority', 'Kammer': 'Chamber', 'Vorschriften': 'Regulations',
