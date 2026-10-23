@@ -91,6 +91,10 @@
   .links a.active{color:var(--text)}
   .links .m-cta{display:none}
   .nav>.btn{margin-left:8px}
+  .lang{display:flex;gap:2px;margin-left:8px;padding:3px;border-radius:999px;border:1px solid var(--border-2);background:var(--card)}
+  .lang button{height:32px;min-width:38px;padding:0 10px;border:0;border-radius:999px;background:none;color:var(--muted);font:inherit;font-size:12.5px;font-weight:500;letter-spacing:.06em;cursor:pointer;transition:color .2s,background .2s}
+  .lang button:hover{color:var(--text)}
+  .lang button[aria-pressed="true"]{background:var(--olive);color:#0b100d}
   .burger{display:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--border-2);background:var(--card);cursor:pointer;place-items:center}
   .burger .i{width:18px;height:18px}
 
@@ -429,6 +433,7 @@
   @media (max-width:900px){
     .links,.nav>.btn{display:none}
     .burger{display:grid}
+    .lang{margin:0 8px 0 0}
     .menu-open .links{display:flex;position:fixed;top:84px;left:16px;right:16px;flex-direction:column;align-items:stretch;gap:4px;padding:10px;border-radius:22px;background:rgba(14,20,17,.96);border:1px solid var(--border);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 30px 60px -20px rgba(0,0,0,.8)}
     .menu-open .links a{padding:14px 16px;font-size:16px}
     .menu-open .links .m-cta{display:flex;margin-top:6px;color:#0b100d}
@@ -519,6 +524,10 @@
       <a href="#ueber">Über uns</a>
       <a href="#faq">FAQ</a>
       <a href="#kontakt" class="btn btn-primary m-cta">Projekt anfragen</a>
+    </div>
+    <div class="lang" role="group" aria-label="Sprache / Language">
+      <button type="button" data-lang="de" lang="de" aria-pressed="true">DE</button>
+      <button type="button" data-lang="en" lang="en" aria-pressed="false">EN</button>
     </div>
     <a href="#kontakt" class="btn btn-primary btn-sm">Projekt anfragen</a>
     <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="links"><svg class="i"><use href="#i-menu"/></svg></button>
@@ -990,6 +999,202 @@
   });
   document.getElementById('year').textContent = new Date().getFullYear();
 
+  /* ============================================================
+     SPRACHE – Deutsch steht im HTML, Englisch hier.
+     Schlüssel = deutscher Text des Textknotens bzw. Attributs
+     (Leerraum zusammengefasst). Fehlt ein Eintrag, bleibt Deutsch
+     stehen – neue Texte also hier mitpflegen.
+     ============================================================ */
+  const EN = {
+    // Navigation & allgemein
+    'Leistungen': 'Services', 'Ablauf': 'Process', 'Pakete': 'Packages', 'Über uns': 'About',
+    'Projekt anfragen': 'Start a project', 'Projekt starten': 'Start a project',
+    'Hauptnavigation': 'Main navigation', 'ZEUS lab – Startseite': 'ZEUS lab – Home',
+    'Menü öffnen': 'Open menu', 'Menü schließen': 'Close menu',
+    // Hero
+    'Studio für Webdesign & Entwicklung': 'Web design & development studio',
+    'Websites, die': 'Websites that', 'Kunden gewinnen.': 'win customers.',
+    'ZEUS lab gestaltet und entwickelt moderne Websites für Unternehmen – blitzschnell, auffindbar und so gebaut, dass aus Besuchern Anfragen werden.': 'ZEUS lab designs and builds modern websites for businesses – lightning fast, easy to find and built to turn visitors into enquiries.',
+    'Leistungen ansehen': 'View services',
+    'Festpreis nach Erstgespräch': 'Fixed price after first call', 'Individuelles Design': 'Custom design', 'DSGVO-konform': 'GDPR compliant',
+    'ihr-unternehmen.at': 'your-business.com', 'Projekte': 'Projects', 'Kontakt': 'Contact', 'Anfragen': 'Enquire',
+    'Ihr Handwerk.': 'Your craft.', 'Perfekt online.': 'Perfectly online.',
+    'Eine Website, die zeigt, was Sie können – und Kunden direkt zu Ihnen führt.': 'A website that shows what you can do – and brings customers straight to you.',
+    'Termin buchen': 'Book a call', 'Mehr erfahren': 'Learn more',
+    'Beratung': 'Consulting', 'Persönlich & vor Ort': 'Personal & on site', 'Planung': 'Planning',
+    'Individuell für Sie': 'Tailored to you', 'Umsetzung': 'Delivery', 'Termingerecht': 'On schedule',
+    'Perfor­mance': 'Perfor­mance', 'Barriere­frei': 'Access­ibility',
+    'Zielwerte: Performance, Barrierefreiheit, Best Practices und SEO je 100 von 100': 'Target scores: performance, accessibility, best practices and SEO, each 100 out of 100',
+    'Neue Anfrage': 'New enquiry', 'Kontaktformular · gerade eben': 'Contact form · just now', 'NEU': 'NEW',
+    'Ladezeit (mobil)': 'Load time (mobile)', '0,8': '0.8',
+    'Individuell gestaltet – keine Templates': 'Custom designed – no templates',
+    'Ladezeit als Ziel für jede Seite': 'Target load time for every page',
+    'Ansprechpartner von Idee bis Launch': 'Contact person from idea to launch',
+    'Hosting & DSGVO-konform': 'Hosting & GDPR compliant',
+    // Leistungen
+    'Alles, was eine starke Website braucht.': 'Everything a strong website needs.',
+    'Design, Entwicklung, Sichtbarkeit und Betreuung – aus einer Hand und aufeinander abgestimmt.': 'Design, development, visibility and support – from a single source and perfectly aligned.',
+    'Ein eigenständiges Design, das Ihre Marke trägt – mit klarer Nutzerführung, die Besucher zur Anfrage bringt. Sie sehen den Entwurf, bevor entwickelt wird.': 'A distinctive design that carries your brand – with clear user guidance that turns visitors into enquiries. You see the draft before any development starts.',
+    'Primär-Button': 'Primary button', 'Sekundär': 'Secondary', 'Karten': 'Cards', 'Formulare': 'Forms',
+    'Perfekt auf jedem Gerät – die meisten Besucher kommen vom Handy.': 'Perfect on every device – most visitors come from their phone.',
+    'Schlanker Code und optimierte Bilder – Ihre Seite lädt sofort.': 'Lean code and optimised images – your site loads instantly.',
+    'Beispiel: Ladezeit 0,8 Sekunden': 'Example: load time 0.8 seconds',
+    '0,8 s': '0.8 s', 'LCP MOBIL': 'LCP MOBILE', 'Bilder': 'Images', 'aktiv': 'active',
+    'SEO & Sichtbarkeit': 'SEO & visibility',
+    'Technisch sauber aufgebaut, damit Google Sie findet – auch lokal.': 'Technically clean, so Google finds you – locally too.',
+    'tischler in meiner nähe': 'carpenter near me',
+    'Ihr Unternehmen – Meisterbetrieb': 'Your Business – Master Craftsmen',
+    'Maßanfertigung, Beratung & Montage …': 'Custom builds, consulting & installation …',
+    'Entwicklung': 'Development', 'Webdesign & UX': 'Web design & UX',
+    'Moderner, wartbarer Code statt schwerfälliger Baukästen.': 'Modern, maintainable code instead of clunky site builders.',
+    '// schnell, sauber, zugänglich': '// fast, clean, accessible',
+    "'individuell'": "'custom'", ', ladezeit:': ',\n  loadTime:',
+    'Ihre bestehende Website – modern, schnell und klar. Inhalte ziehen mit, Rankings bleiben erhalten.': 'Your existing website – modern, fast and clear. Content moves over, rankings are preserved.',
+    'Vorher': 'Before', 'Nachher': 'After',
+    'Hosting & Betreuung': 'Hosting & support',
+    'Updates, Backups und Monitoring – Ihre Website bleibt sicher und aktuell.': 'Updates, backups and monitoring – your website stays secure and up to date.',
+    'Monitoring · 30 Tage': 'Monitoring · 30 days',
+    'SSL & Hosting in der EU': 'SSL & hosting in the EU', 'Regelmäßige Backups': 'Regular backups',
+    'Sicherheits-Updates': 'Security updates', 'Änderungen auf Zuruf': 'Changes on request',
+    // CTA
+    'Bereit?': 'Ready?', 'Ihre neue Website beginnt mit': 'Your new website starts with', 'einem Gespräch.': 'a conversation.',
+    'Kostenlos, unverbindlich und mit klarem Ergebnis: Sie wissen danach, was Ihre Website leisten kann.': 'Free, no obligation and with a clear outcome: afterwards you know what your website can achieve.',
+    // Simulator
+    'Interaktive Demo': 'Interactive demo', 'Jede Sekunde Ladezeit kostet Kunden.': 'Every second of load time costs customers.',
+    'Ziehen Sie den Regler auf die Ladezeit Ihrer aktuellen Website und sehen Sie, wie stark die Absprungwahrscheinlichkeit gegenüber einer Seite steigt, die in einer Sekunde lädt.': 'Drag the slider to your current website’s load time and see how much the bounce probability rises compared with a page that loads in one second.',
+    'Website prüfen lassen': 'Get your website checked', 'Ladezeit-Simulator': 'Load time simulator',
+    'Ladezeit Ihrer Website': 'Your website’s load time',
+    'Höhere Absprung­wahrscheinlichkeit': 'Higher bounce prob­ability',
+    'Von 100 Besuchern zusätzlich verloren*': 'Extra visitors lost out of 100*',
+    'Absprungwerte: Google/SOASTA Research (2017), jeweils verglichen mit 1 s Ladezeit. *Vereinfachte Annahme mit 40 % Basis-Absprungrate. Simulation – keine Messung Ihrer Website.': 'Bounce figures: Google/SOASTA Research (2017), each compared with a 1 s load time. *Simplified assumption with a 40 % base bounce rate. Simulation – not a measurement of your website.',
+    'Schnell – genau hier sollte jede Website liegen.': 'Fast – exactly where every website should be.',
+    'Spürbare Verluste. Mit Optimierung ist meist deutlich mehr möglich.': 'Noticeable losses. Optimisation usually makes a big difference.',
+    'Kritisch – viele Besucher springen ab, bevor die Seite überhaupt sichtbar ist.': 'Critical – many visitors leave before the page is even visible.',
+    // Ablauf
+    'In vier Schritten online.': 'Online in four steps.',
+    'Klar strukturiert und transparent – Sie wissen jederzeit, wo Ihr Projekt steht.': 'Clearly structured and transparent – you always know where your project stands.',
+    'Erstgespräch': 'First call',
+    'Ziele, Zielgruppe und Umfang klären. Danach erhalten Sie Festpreis und Zeitplan.': 'We clarify goals, audience and scope. Then you get a fixed price and timeline.',
+    'Konzept & Design': 'Concept & design',
+    'Struktur und Design-Entwurf – Sie sehen Ihre Website, bevor entwickelt wird.': 'Structure and design draft – you see your website before development starts.',
+    'Schnelle, responsive Umsetzung. Den Fortschritt verfolgen Sie live über eine Vorschau.': 'Fast, responsive build. You follow progress live via a preview.',
+    'Launch & Betreuung': 'Launch & support',
+    'Go-live mit Domain, SSL und Einschulung – und auf Wunsch laufende Betreuung.': 'Go-live with domain, SSL and training – plus ongoing support if you like.',
+    // Pakete
+    'Klarer Umfang. Fester Preis.': 'Clear scope. Fixed price.',
+    'Wählen Sie den passenden Einstieg. Den genauen Festpreis erhalten Sie nach dem kostenlosen Erstgespräch.': 'Choose the right starting point. You get the exact fixed price after the free first call.',
+    'Onepager oder Landingpage – schnell und professionell online.': 'One-pager or landing page – online quickly and professionally.',
+    'Preis': 'Price', 'auf Anfrage': 'on request', 'Onepager oder Landingpage': 'One-pager or landing page',
+    'Kontaktformular': 'Contact form', 'SEO-Grundlagen': 'SEO basics',
+    'Impressum & Datenschutz eingebunden': 'Legal notice & privacy policy included',
+    'Spark anfragen': 'Enquire about Spark', 'Beliebt': 'Popular',
+    'Die vollständige Unternehmenswebsite für Ihren professionellen Auftritt.': 'The complete business website for a professional presence.',
+    'Bis zu 8 Unterseiten': 'Up to 8 subpages', 'Design-Entwurf zur Freigabe': 'Design draft for approval',
+    'Inhalte selbst pflegbar (CMS)': 'Edit content yourself (CMS)',
+    'Performance- & SEO-Optimierung': 'Performance & SEO optimisation', 'Einschulung & Übergabe': 'Training & handover',
+    'Bolt anfragen': 'Enquire about Bolt',
+    'Individuelle Lösungen: Webapps, Buchungen, Schnittstellen, mehrsprachig.': 'Custom solutions: web apps, bookings, integrations, multilingual.',
+    'nach Umfang': 'based on scope', 'Konzept & Anforderungsanalyse': 'Concept & requirements analysis',
+    'Individuelle Funktionen': 'Custom features', 'Anbindung bestehender Systeme': 'Integration with existing systems',
+    'Testphase & Dokumentation': 'Testing & documentation', 'Mehrsprachig möglich': 'Multilingual possible',
+    'Olymp besprechen': 'Discuss Olymp', 'Care – laufende Betreuung': 'Care – ongoing support',
+    'Hosting, Updates, Backups und Änderungen – monatlich kündbar.': 'Hosting, updates, backups and changes – cancel monthly.',
+    'Preis auf Anfrage': 'Price on request', 'Hosting in der EU': 'Hosting in the EU',
+    'Stundenkontingent': 'Hour allowance', 'Care anfragen': 'Enquire about Care',
+    // Über uns
+    'Foto folgt': 'Photo coming soon',
+    'Alexander Stelzer, MA – Founder von ZEUS lab': 'Alexander Stelzer, MA – Founder of ZEUS lab',
+    'Design und Technik.': 'Design and technology.', 'Aus einer Hand.': 'From a single source.',
+    'Ich habe ZEUS lab in Wiener Neustadt gegründet, um Websites zu bauen, die ich selbst gern benutzen würde. Mein eigenes Projekt ZEUS Protocol – eine Web-App mit Cloud-Sync sowie Whoop- und Apple-Health-Anbindung – zeigt, worauf ich Wert lege: durchdachtes Design, saubere Technik und Datenschutz.': 'I founded ZEUS lab in Wiener Neustadt to build websites I would enjoy using myself. My own project ZEUS Protocol – a web app with cloud sync and Whoop and Apple Health integration – shows what matters to me: thoughtful design, clean engineering and privacy.',
+    'ZEUS lab steht für Websites, die nicht nur gut aussehen, sondern technisch sauber gebaut sind und messbar wirken.': 'ZEUS lab stands for websites that not only look good but are technically clean and deliver measurable results.',
+    'Statt überladener Baukästen entstehen schlanke, individuelle Lösungen – mit einem festen Ansprechpartner von der ersten Idee bis lange nach dem Launch.': 'Instead of bloated site builders, you get lean, custom solutions – with one dedicated contact from the first idea to long after launch.',
+    'Persönlich': 'Personal', 'Ein Ansprechpartner, kurze Wege, schnelle Antworten.': 'One contact, short paths, quick answers.',
+    'Individuell': 'Custom', 'Keine Templates – jede Website ist ein Unikat.': 'No templates – every website is one of a kind.',
+    'Schnell': 'Fast', 'Performance ist kein Extra, sondern Standard.': 'Performance isn’t an extra, it’s standard.',
+    'Festpreis und Zeitplan, bevor es losgeht.': 'Fixed price and timeline before we start.',
+    // FAQ
+    'Häufige Fragen.': 'Frequently asked questions.',
+    'Ihre Frage ist nicht dabei? Schreiben Sie uns – wir antworten persönlich.': 'Your question isn’t listed? Write to us – we reply personally.',
+    'Frage stellen': 'Ask a question',
+    'Wie lange dauert es, bis meine Website online ist?': 'How long until my website is online?',
+    'Das hängt vom Umfang ab. Ein Onepager ist deutlich schneller umgesetzt als eine Website mit vielen Unterseiten oder individuellen Funktionen. Nach dem Erstgespräch erhalten Sie einen konkreten Zeitplan.': 'That depends on the scope. A one-pager is built much faster than a website with many subpages or custom features. After the first call you receive a concrete timeline.',
+    'Was kostet eine Website?': 'How much does a website cost?',
+    'Jedes Projekt wird nach dem kostenlosen Erstgespräch zu einem Festpreis angeboten. Sie wissen vorab genau, was Sie bekommen – ohne versteckte Kosten.': 'Every project is offered at a fixed price after the free first call. You know exactly what you get up front – no hidden costs.',
+    'Kann ich Inhalte später selbst ändern?': 'Can I change content myself later?',
+    'Ja, wenn gewünscht. Texte, Bilder und Beiträge lassen sich über ein einfaches Redaktionssystem pflegen. Alternativ übernehmen wir Änderungen im Rahmen von Care.': 'Yes, if you wish. Text, images and posts can be edited in a simple content management system. Alternatively, we handle changes as part of Care.',
+    'Lohnt sich ein Relaunch meiner bestehenden Website?': 'Is relaunching my existing website worth it?',
+    'Oft ja – vor allem, wenn die Seite langsam ist, am Handy schlecht funktioniert oder kaum Anfragen bringt. Bestehende Inhalte und Bilder werden übernommen, Weiterleitungen sichern Ihr Google-Ranking.': 'Often, yes – especially if the site is slow, works poorly on phones or brings few enquiries. Existing content and images are carried over, and redirects protect your Google ranking.',
+    'Kümmert ihr euch um Domain und Hosting?': 'Do you take care of domain and hosting?',
+    'Ja. Auf Wunsch übernehmen wir Domain, Hosting in der EU und SSL-Zertifikat und begleiten den Umzug von Ihrer bestehenden Seite.': 'Yes. On request we handle the domain, EU hosting and SSL certificate and manage the move from your existing site.',
+    'Ist meine Website DSGVO-konform?': 'Is my website GDPR compliant?',
+    'Datenschutz wird von Anfang an mitgedacht: datensparsame Technik, keine unnötigen Drittanbieter, Hosting in der EU und eingebundene Rechtstexte. Die Rechtstexte selbst sollten von Ihnen bzw. einer Rechtsberatung geprüft werden.': 'Privacy is built in from the start: data-minimal technology, no unnecessary third parties, EU hosting and integrated legal texts. The legal texts themselves should be reviewed by you or a legal adviser.',
+    // Kontakt
+    'Lassen Sie uns über Ihr Projekt sprechen.': 'Let’s talk about your project.',
+    'Ein paar Sätze genügen. Für die erste Anfrage brauchen Sie kein fertiges Konzept.': 'A few sentences are enough. You don’t need a finished concept for your first enquiry.',
+    'Anfrage senden': 'Send enquiry', 'Kurz beschreiben, was Ihre Website leisten soll.': 'Briefly describe what your website should do.',
+    'Kostenloses Erstgespräch': 'Free first call', 'Wir klären Ziel, Umfang und Rahmenbedingungen.': 'We clarify goals, scope and requirements.',
+    'Festpreis-Angebot': 'Fixed-price offer', 'Sie erhalten Preis und Zeitplan – unverbindlich.': 'You receive price and timeline – no obligation.',
+    'E-Mail': 'Email', 'Telefon': 'Phone', 'Standort': 'Location', 'Wiener Neustadt, Österreich': 'Wiener Neustadt, Austria',
+    'Worum geht es?': 'What is it about?', 'Neue Website': 'New website', 'Landingpage': 'Landing page',
+    'Webapp': 'Web app', 'Betreuung': 'Support', 'Unternehmen': 'Company', 'E-Mail *': 'Email *', 'Paket': 'Package',
+    'Noch offen': 'Not sure yet', 'Bestehende Website': 'Existing website', 'Ihr Vorhaben *': 'Your project *',
+    'Max Mustermann': 'Jane Doe', 'Firma GmbH': 'Company Ltd', 'name@firma.at': 'name@company.com',
+    'Was soll Ihre neue Website leisten?': 'What should your new website do?',
+    'Ich stimme zu, dass meine Angaben zur Bearbeitung meiner Anfrage verwendet werden.': 'I agree that my details may be used to process my enquiry.',
+    'Danke für Ihre Anfrage!': 'Thank you for your enquiry!',
+    'Wir melden uns in Kürze persönlich bei Ihnen.': 'We’ll get back to you personally very soon.',
+    'Vorschau: Das Formular ist noch nicht mit einem Versanddienst verbunden.': 'Preview: the form is not yet connected to a sending service.',
+    // Footer & Rechtliches
+    'Moderne Websites für Unternehmen – Design, Entwicklung und Betreuung aus einer Hand.': 'Modern websites for businesses – design, development and support from a single source.',
+    'Impressum': 'Legal notice', 'Datenschutz': 'Privacy',
+    'Inhaber': 'Owner', 'Rechtsform': 'Legal form', 'Anschrift': 'Address', 'Gegenstand': 'Business purpose',
+    'Webdesign und Webentwicklung': 'Web design and web development', 'UID': 'VAT ID', 'Firmenbuch': 'Company register',
+    'Gewerbe': 'Trade licence', 'Behörde': 'Authority', 'Kammer': 'Chamber', 'Vorschriften': 'Regulations',
+    'Gewerbeordnung (GewO), abrufbar unter': 'Austrian Trade Regulation Act (GewO), available at',
+    'Schließen': 'Close',
+    'Die Datenschutzerklärung wird vor dem Livegang ergänzt. Diese Vorschau lädt Schriften von Google Fonts; im Livebetrieb sollten sie lokal eingebunden werden.': 'The privacy policy will be added before going live. This preview loads fonts from Google Fonts; in production they should be self-hosted.',
+    // Platzhalter aus CONFIG
+    'folgt': 'to follow', 'E-Mail folgt': 'Email coming soon', 'Telefon folgt': 'Phone coming soon',
+    'Standort folgt': 'Location coming soon', 'Name folgt': 'Name coming soon',
+    // Kopf
+    'ZEUS lab – Moderne Websites für Unternehmen': 'ZEUS lab – Modern websites for businesses',
+    'ZEUS lab gestaltet und entwickelt moderne, schnelle Websites für Unternehmen – Design, Entwicklung, SEO und Betreuung aus einer Hand.': 'ZEUS lab designs and builds modern, fast websites for businesses – design, development, SEO and support from a single source.',
+    'Design, Entwicklung und Performance aus einer Hand.': 'Design, development and performance from a single source.'
+  };
+  let lang = 'de';
+  const norm = t => t.replace(/\s+/g, ' ').trim();
+  const tr = de => (lang === 'en' && EN[norm(de)]) || de;
+
+  // Einmal einsammeln, solange alles noch Deutsch ist; der Originaltext bleibt fürs Zurückschalten gespeichert
+  const I18N_TEXT = [], I18N_ATTR = [];
+  const tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+    acceptNode: n => n.parentElement.closest('script,style') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT
+  });
+  for (let n; (n = tw.nextNode());) if (EN[norm(n.nodeValue)]) I18N_TEXT.push([n, n.nodeValue]);
+  document.querySelectorAll('[placeholder],[aria-label],[alt]').forEach(el =>
+    ['placeholder', 'aria-label', 'alt'].forEach(a => { const v = el.getAttribute(a); if (v && EN[norm(v)]) I18N_ATTR.push([el, a, v]); }));
+  document.querySelectorAll('meta[name="description"],meta[property^="og:"]').forEach(m => {
+    const v = m.getAttribute('content'); if (EN[norm(v)]) I18N_ATTR.push([m, 'content', v]);
+  });
+  const DOC_TITLE = document.title;
+
+  const setLang = l => {
+    lang = l === 'en' ? 'en' : 'de';
+    document.documentElement.lang = lang;
+    document.title = tr(DOC_TITLE);
+    // Leerraum am Rand bleibt stehen, damit Inline-Abstände (z. B. vor <span class="grad">) erhalten bleiben
+    I18N_TEXT.forEach(([n, de]) => {
+      n.nodeValue = lang === 'en' ? de.replace(/^(\s*)([\s\S]*?)(\s*)$/, (_, a, _c, b) => a + EN[norm(de)] + b) : de;
+    });
+    I18N_ATTR.forEach(([el, a, de]) => el.setAttribute(a, tr(de)));
+    document.querySelectorAll('.lang button').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === lang));
+    upd();
+  };
+  document.querySelectorAll('.lang button').forEach(b => b.addEventListener('click', () => {
+    setLang(b.dataset.lang);
+    try { localStorage.setItem('zeuslab.lang', lang); } catch (e) {}
+  }));
+
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const ease = p => 1 - Math.pow(1 - p, 3);
   // Zahl und Bogen laufen im selben Frame, damit sie nie auseinanderdriften
@@ -1027,7 +1232,7 @@
   const setMenu = o => {
     document.body.classList.toggle('menu-open', o);
     burger.setAttribute('aria-expanded', o);
-    burger.setAttribute('aria-label', o ? 'Menü schließen' : 'Menü öffnen');
+    burger.setAttribute('aria-label', tr(o ? 'Menü schließen' : 'Menü öffnen'));
     burger.querySelector('use').setAttribute('href', o ? '#i-x' : '#i-menu');
     if (o) nav.classList.add('solid'); else onScroll();
   };
@@ -1073,7 +1278,7 @@
     const x = +lt.value, inc = interp(x), base = 40, extra = Math.min(100 - base, base * inc / 100);
     const cls = x <= 2 ? 'good' : x <= 4 ? 'warn' : 'bad';
     lt.style.setProperty('--p', ((x - 1) / 9 * 100) + '%');
-    out.innerHTML = x.toFixed(1).replace('.', ',') + '<span>s</span>';
+    out.innerHTML = (lang === 'en' ? x.toFixed(1) : x.toFixed(1).replace('.', ',')) + '<span>s</span>';
     kB.textContent = '+' + Math.round(inc) + ' %';
     kL.textContent = '≈ ' + Math.round(extra);
     kB.className = kL.className = cls;
@@ -1081,9 +1286,9 @@
     mL.style.width = (extra / (100 - base) * 100) + '%';
     mB.style.background = mL.style.background = COL[cls];
     verdict.className = 'verdict' + (cls === 'good' ? '' : ' ' + cls);
-    vText.textContent = cls === 'good' ? 'Schnell – genau hier sollte jede Website liegen.'
+    vText.textContent = tr(cls === 'good' ? 'Schnell – genau hier sollte jede Website liegen.'
       : cls === 'warn' ? 'Spürbare Verluste. Mit Optimierung ist meist deutlich mehr möglich.'
-      : 'Kritisch – viele Besucher springen ab, bevor die Seite überhaupt sichtbar ist.';
+      : 'Kritisch – viele Besucher springen ab, bevor die Seite überhaupt sichtbar ist.');
   };
   lt.addEventListener('input', upd); upd();
 
@@ -1098,6 +1303,11 @@
     if (bad) { bad.focus(); bad.reportValidity(); return; }
     form.classList.add('sent');
   });
+
+  /* Startsprache: ?lang=en im Link (zum Teilen) vor gespeicherter Wahl vor Deutsch */
+  let savedLang = null;
+  try { savedLang = localStorage.getItem('zeuslab.lang'); } catch (e) {}
+  setLang(new URLSearchParams(location.search).get('lang') || savedLang || 'de');
 
   document.getElementById('openImp').onclick = () => document.getElementById('imp').showModal();
   document.getElementById('openPriv').onclick = () => document.getElementById('priv').showModal();
